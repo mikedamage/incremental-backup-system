@@ -49,7 +49,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>2</integer>
+			<integer>26</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
@@ -70,7 +70,7 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>22</integer>
+				<integer>43</integer>
 				<key>line</key>
 				<integer>16</integer>
 			</dict>
@@ -88,6 +88,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{277, 135}, {788, 696}}</string>
+	<string>{{418, 113}, {788, 696}}</string>
 </dict>
 </plist>
