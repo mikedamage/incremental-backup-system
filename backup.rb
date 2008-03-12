@@ -1,29 +1,95 @@
 #!/usr/bin/env ruby
 #
 # = Incremental Backup
-#	Author::	Mike Green
-#	Date::		3/10/08
-#	Copyright::	2008, Mike Green
-#	License:: 	GNU General Public License
+#
+# Author::		Mike Green <mike.is.green@gmail.com>
+# Date::			03-11-2008
+# Copyright::	Copyright (c) 2008 Mike Green
+# License::		GNU General Public License
 #
 # == Summary
+#
 #	Made to be run via Cron or Launchd at specified intervals, this script takes a snapshot of 
 #	the specified folder(s). It stores a specified number of incremental daily snapshots, as well
 #	as an archive of compressed weekly and monthly backups.
-  
+#
+# == Usage
+
 require 'rdoc/usage'
 require 'optparse'
 require 'ostruct'
 require 'fileutils'
+require 'pathname'
 
+# Set the default options.
 @options = OpenStruct.new
 @options.archive = false
 @options.ignore = nil
 @options.max_snaps = 14
 @options.source = "./"
 
+# TODO: Refactor the existing methods into classes (Snapshots, Archive)
+
+class Snapshots
+	def new(source, destination)
+		# Creates a new incremental snapshot backup of *source* directory, storing it in a numbered subdirectory of *destination*
+		@src = Pathname.new(source)
+		@dest = Pathname.new(destination)
+		snapshots = @dest.children.reverse
+		
+		age(@dest) unless snapshots.empty?
+	end
+	
+	def age(directory)
+		@dir = Pathname.new(directory)
+		snapshots = @dir.children.reverse
+		
+		snapshots.each do |d|
+			rev = d.slice(/\d+/).to_i
+			if rev >= @options.max_snaps
+			if rev > 1
+				oldname = d.to_s
+				newname = d.dirname.to_s + "/Snapshot." + (rev + 1).to_s
+				FileUtils.mv(oldname, newname)
+			else
+				
+			end
+		end
+	end
+end
+
+def snapshot(source, destination)
+	snapshots = Dir.entries(destination).delete_if {|d| d == "." or d == ".."}
+	snapshots = snapshots.reverse
+	oldest = destination + "/" + snapshots[0]
+	@rev_filter = Regexp.new('\d\d')
+	
+	# Delete oldest directory if number of snapshots is equal to or greater than the limit
+	if snapshots[0].slice(rev_filter).to_i >= @options.max_snaps
+		FileUtils.remove_dir(oldest, force = true)
+		snapshots = Dir.entries(destination).delete_if {|d| d == "." or d == ".."}
+	end
+	
+	# Bump each snapshot back one
+	snapshots.each do |s|
+		num = s.slice(@rev_filter).to_i
+		old_path = destination + "/" + s
+		new_path = destination + "/Snapshot." + (num + 1).to_s
+		
+		if num >= 1
+			FileUtils.mv(old_path, new_path)
+		else
+			
+		end
+	end
+end
+
+class Archive
+	
+end
+
 opts = OptionParser.new do |opts|
-	opts.banner = "Usage: backup.rb [-a|--archive] [-i|--ignore] [-m|--max-snaps snapshots_to_keep] [source] destination"
+	opts.banner = "backup.rb [-a|--archive] [-i|--ignore] [-m|--max-snaps snapshots_to_keep] [source] destination"
 	
 	opts.on("-a", "--archive", "Create an archive of the most recent backup in the source directory") do |a|
 		@options.archive = a
@@ -45,46 +111,26 @@ opts = OptionParser.new do |opts|
 	end
 end
 
-def snapshot(source, destination)
-	snapshots = Dir.entries(destination).delete_if {|d| d == "." or d == ".."}
-	snapshots = snapshots.reverse
-	oldest = destination + "/" + snapshots[0]
-	@rev_filter = Regexp.new('\d\d')
-	
-	# Delete oldest directory if number of snapshots is equal to or greater than the limit
-	if snapshots[0].slice(rev_filter).to_i >= @options.max_snaps
-		FileUtils.remove_dir(oldest, force = true)
-		snapshots = Dir.entries(destination).delete_if {|d| d == "." or d == ".."}
-	end
-	
-	# Bump each snapshot back one
-	snapshots.each do |s|
-		num = s.slice(@rev_filter).to_i
-		old_path = destination + "/" + s
-		new_path = destination + "/Snapshot." + (num + 1)
-		FileUtils.mv(old_path, new_path)
-	end
-end
-
-def archive(source, destination)
-end
-
 begin
-	opts.parse!(ARGV)
-  
-	if @options.archive
-		puts "archiving " + ARGV[0] + " to " + ARGV[1]
-		#archive(ARGV[0], ARGV[1])
+	if ARGV.nil? || ARGV.empty?
+		RDoc.usage()
 	else
-		puts "Creating snapshot of: " + ARGV[0]
-		puts "Sending to: " + ARGV[1]
-		puts "max snapshots to keep: " + @options.max_snaps.to_s
-		puts "Path to ignore patterns: " + @options.ignore if @options.ignore
-		puts "\nCalling method: snapshot(" + ARGV[0] + ", " + ARGV[1] + ")"
-		#snapshot(ARGV[0], ARGV[1])
+		opts.parse!(ARGV)
+  
+		if @options.archive
+			puts "archiving " + ARGV[0] + " to " + ARGV[1]
+			#archive(ARGV[0], ARGV[1])
+		else
+			puts "Creating snapshot of: " + ARGV[0]
+			puts "Sending to: " + ARGV[1]
+			puts "max snapshots to keep: " + @options.max_snaps.to_s
+			puts "Path to ignore patterns: " + @options.ignore if @options.ignore
+			puts "\nCalling method: snapshot(" + ARGV[0] + ", " + ARGV[1] + ")"
+			#snapshot(ARGV[0], ARGV[1])
+		end
 	end
 rescue OptionParser::ParseError => e
   puts e
   RDoc.usage()
 end
-
+end
