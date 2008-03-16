@@ -20,71 +20,63 @@ require 'optparse'
 require 'ostruct'
 require 'fileutils'
 require 'pathname'
+require 'logger'
 
 # Set the default options.
-@options = OpenStruct.new
-@options.archive = false
-@options.ignore = nil
-@options.max_snaps = 14
-@options.source = "./"
+@@options = OpenStruct.new
+@@options.archive = false
+@@options.ignore = nil
+@@options.max_snaps = 14
+@@options.source = "./"
+@@options.logfile = '/Users/mike/Desktop/backup.log'
+
+@@log = Logger.new(@@options.logfile, 10, 1024000)
+@@log.level = Logger::INFO
 
 # TODO: Refactor the existing methods into classes (Snapshots, Archive)
 
-class Snapshots
-	def new(source, destination)
-		# Creates a new incremental snapshot backup of *source* directory, storing it in a numbered subdirectory of *destination*
-		@src = Pathname.new(source)
-		@dest = Pathname.new(destination)
-		snapshots = @dest.children.reverse
-		
-		age(@dest) unless snapshots.empty?
+class Snapshot
+	attr_accessor :src, :dest, :siblings, :oldest_sib
+	
+	def initialize(src, dest)
+		@src = Pathname.new(src)
+		@dest = Pathname.new(dest)
+		@siblings = @dest.children.reverse
+		@oldest_sib = @siblings[0].to_s
 	end
 	
-	def age(directory)
-		@dir = Pathname.new(directory)
-		snapshots = @dir.children.reverse
-		
-		snapshots.each do |d|
+	def snap
+		# Creates a new incremental snapshot backup of *source* directory, storing it in a numbered subdirectory of *destination*
+		age_siblings unless @siblings.empty?
+	end
+	
+	def age_siblings
+		@siblings.each do |sib|
+			d = sib.to_s
 			rev = d.slice(/\d+/).to_i
-			if rev >= @options.max_snaps
-			if rev > 1
-				oldname = d.to_s
-				newname = d.dirname.to_s + "/Snapshot." + (rev + 1).to_s
+			
+			
+			if rev >= @@options.max_snaps
+				# Delete snapshots past max number to keep...
+				Pathname.rmtree(d)
+			elsif rev > 0
+				# Rename the snapshots from 1 to Max, increasing by 1
+				oldname = d
+				newname = @dest.to_s + "/Snapshot." + (rev + 1).to_s
 				FileUtils.mv(oldname, newname)
+				@@log.info("Moved #{oldname} to #{newname}")
 			else
-				
+				# Treat Snapshot 0 differently, creating a hardlink-only copy of itself to Snapshot.1		
 			end
 		end
 	end
+	
 end
 
-def snapshot(source, destination)
-	snapshots = Dir.entries(destination).delete_if {|d| d == "." or d == ".."}
-	snapshots = snapshots.reverse
-	oldest = destination + "/" + snapshots[0]
-	@rev_filter = Regexp.new('\d\d')
-	
-	# Delete oldest directory if number of snapshots is equal to or greater than the limit
-	if snapshots[0].slice(rev_filter).to_i >= @options.max_snaps
-		FileUtils.remove_dir(oldest, force = true)
-		snapshots = Dir.entries(destination).delete_if {|d| d == "." or d == ".."}
-	end
-	
-	# Bump each snapshot back one
-	snapshots.each do |s|
-		num = s.slice(@rev_filter).to_i
-		old_path = destination + "/" + s
-		new_path = destination + "/Snapshot." + (num + 1).to_s
-		
-		if num >= 1
-			FileUtils.mv(old_path, new_path)
-		else
-			
-		end
-	end
-end
 
 class Archive
+	# An Archive object represents the most recent snapshot inside the destination (snapshot storage) folder.
+	# It gets compressed and copied into the deep-freeze folder for long term storage
 	
 end
 
@@ -94,43 +86,43 @@ opts = OptionParser.new do |opts|
 	opts.on("-a", "--archive", "Create an archive of the most recent backup in the source directory") do |a|
 		@options.archive = a
 	end
-	opts.on("-i", "--ignore [IGNORE]", "Pattern of files to ignore, or path to file with patterns") do |i|
+	opts.on("-i", "--ignore IGNORE", "Pattern of files to ignore, or path to file with patterns") do |i|
 		@options.ignore = i
 	end
-	opts.on("-m", "--max-snaps [MAX_SNAPS]", Integer, "Maximum number of snapshots to keep before deleting old ones.") do |m|
-		if m <= 1
+	opts.on("-m", "--max-snaps MAX_SNAPS", Integer, "Number of snapshots to keep before deleting old ones.") do |m|
+		if m < 2
 			@options.max_snaps = 2
 		else
 			@options.max_snaps = m
 		end
 	end
-	opts.on_tail("-h", "--help", "Shows this message") do
+	opts.on("-u", "--usage", "Only print the usage summary") do
+		puts opts
+		exit
+	end
+	opts.on_tail("-h", "--help", "Shows credits, summary, and usage information") do
 		RDoc.usage_no_exit()
 		puts opts
 		exit
 	end
 end
 
-begin
-	if ARGV.nil? || ARGV.empty?
-		RDoc.usage()
+=begin
+	opts.parse!(ARGV)
+	if @options.archive
+		puts "archiving " + ARGV[0] + " to " + ARGV[1]
+		#archive(ARGV[0], ARGV[1])
 	else
-		opts.parse!(ARGV)
-  
-		if @options.archive
-			puts "archiving " + ARGV[0] + " to " + ARGV[1]
-			#archive(ARGV[0], ARGV[1])
-		else
-			puts "Creating snapshot of: " + ARGV[0]
-			puts "Sending to: " + ARGV[1]
-			puts "max snapshots to keep: " + @options.max_snaps.to_s
-			puts "Path to ignore patterns: " + @options.ignore if @options.ignore
-			puts "\nCalling method: snapshot(" + ARGV[0] + ", " + ARGV[1] + ")"
-			#snapshot(ARGV[0], ARGV[1])
-		end
+		puts "Creating snapshot of: " + ARGV[0]
+		puts "Sending to: " + ARGV[1]
+		puts "max snapshots to keep: " + @options.max_snaps.to_s
+		puts "Path to ignore patterns: " + @options.ignore if @options.ignore
+		# Snapshot.create(ARGV[0], ARGV[1])
 	end
 rescue OptionParser::ParseError => e
   puts e
+	@log.fatal('Caught error, exiting...')
+	@log.fatal(e)
   RDoc.usage()
-end
-end
+=end
+
