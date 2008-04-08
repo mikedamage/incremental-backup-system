@@ -1,3 +1,7 @@
+require 'ostruct'
+require 'fileutils'
+require 'pathname'
+
 module Backup
 	class Snapshot
 		attr_accessor :src, :dest, :siblings, :oldest_sib
@@ -30,6 +34,7 @@ module Backup
 					FileUtils.mv(oldname, newname)
 				else
 					# Treat Snapshot 0 differently, creating a hardlink-only copy of itself to Snapshot.1		
+					`cd #{(@dest + "Snapshot.0").to_s} && find . -print | cpio -dplm #{(@dest + "Snapshot.1").to_s} ;`
 				end
 			end
 		end
