@@ -23,7 +23,7 @@ require 'pathname'
 require 'logger'
 (Pathname.new(__FILE__).dirname + "lib").children.each {|f| require f.to_s}
 
-# Set the default options.
+# TODO: Change the preferences into a YAML file so that multiple backup schemes can be created.
 $prefs = OpenStruct.new
 $prefs.archive = false
 $prefs.ignore = nil

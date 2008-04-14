@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>lib/snapshot.rb</string>
+	<string>backup.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,35 +21,47 @@
 	<integer>194</integer>
 	<key>metaData</key>
 	<dict>
+		<key>Rakefile</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>8</integer>
+				<key>line</key>
+				<integer>21</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>backup.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>18</integer>
+				<integer>95</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>25</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>9</integer>
-			<key>selectFrom</key>
+			<integer>0</integer>
+		</dict>
+		<key>backup_daemon.rb</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>22</integer>
 				<key>line</key>
-				<integer>19</integer>
+				<integer>12</integer>
 			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>18</integer>
-				<key>line</key>
-				<integer>21</integer>
-			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>incremental_backup.sh</key>
 		<dict>
@@ -70,14 +82,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>94</integer>
+				<integer>20</integer>
 				<key>line</key>
-				<integer>36</integer>
+				<integer>25</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>14</integer>
+				<key>line</key>
+				<integer>25</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>20</integer>
+				<key>line</key>
+				<integer>25</integer>
+			</dict>
 		</dict>
 		<key>nemo_daily.sh</key>
 		<dict>
@@ -127,12 +155,14 @@
 	<key>openDocuments</key>
 	<array>
 		<string>backup.rb</string>
+		<string>Rakefile</string>
+		<string>backup_daemon.rb</string>
 		<string>nemo_daily.sh</string>
 		<string>lib/snapshot.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{60, 84}, {1101, 740}}</string>
+	<string>{{66, 119}, {1101, 740}}</string>
 </dict>
 </plist>
