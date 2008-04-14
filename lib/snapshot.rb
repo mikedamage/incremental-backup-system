@@ -23,8 +23,7 @@ module Backup
 				d = sib.to_s
 				rev = d.slice(/\d+/).to_i
 
-
-				if rev >= @@options.max_snaps
+				if rev >= $prefs.max_snaps
 					# Delete snapshots past max number to keep...
 					Pathname.rmtree(d)
 				elsif rev > 0
@@ -34,7 +33,7 @@ module Backup
 					FileUtils.mv(oldname, newname)
 				else
 					# Treat Snapshot 0 differently, creating a hardlink-only copy of itself to Snapshot.1		
-					`cd #{(@dest + "Snapshot.0").to_s} && find . -print | cpio -dplm #{(@dest + "Snapshot.1").to_s} ;`
+					system "cd #{(@dest + "Snapshot.0").to_s} && find . -print | cpio -dplm #{(@dest + "Snapshot.1").to_s} ;"
 				end
 			end
 		end

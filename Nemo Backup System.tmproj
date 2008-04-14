@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>nemo_daily.sh</string>
+	<string>lib/snapshot.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -26,14 +26,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>69</integer>
+				<integer>18</integer>
 				<key>line</key>
-				<integer>23</integer>
+				<integer>21</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>9</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>19</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>21</integer>
+			</dict>
 		</dict>
 		<key>incremental_backup.sh</key>
 		<dict>
@@ -49,28 +65,14 @@
 			<key>firstVisibleLine</key>
 			<integer>2</integer>
 		</dict>
-		<key>lib/archive.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>3</integer>
-				<key>line</key>
-				<integer>5</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>lib/snapshot.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>35</integer>
+				<integer>94</integer>
 				<key>line</key>
-				<integer>29</integer>
+				<integer>36</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -82,9 +84,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>45</integer>
+				<integer>86</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>59</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -95,16 +97,16 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>13</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>59</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>45</integer>
+				<integer>86</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>59</integer>
 			</dict>
 		</dict>
 		<key>nemo_weekly.sh</key>
@@ -126,7 +128,6 @@
 	<array>
 		<string>backup.rb</string>
 		<string>nemo_daily.sh</string>
-		<string>lib/archive.rb</string>
 		<string>lib/snapshot.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
