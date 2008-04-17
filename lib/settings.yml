@@ -1,0 +1,4 @@
+vault:
+    source: /Volumes/Vault
+    destination: /Volumes/Mirror/_Vault/Snapshots
+    snapshots: 14

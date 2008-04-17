@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>backup.rb</string>
+	<string>lib/snapshot.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -40,14 +40,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>95</integer>
+				<integer>41</integer>
 				<key>line</key>
-				<integer>25</integer>
+				<integer>14</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 		<key>backup_daemon.rb</key>
 		<dict>
@@ -77,35 +77,47 @@
 			<key>firstVisibleLine</key>
 			<integer>2</integer>
 		</dict>
-		<key>lib/snapshot.rb</key>
+		<key>lib/archive.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>22</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>lib/backup.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>20</integer>
 				<key>line</key>
-				<integer>25</integer>
+				<integer>3</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
+		</dict>
+		<key>lib/snapshot.rb</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>14</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>25</integer>
+				<integer>8</integer>
 			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>20</integer>
-				<key>line</key>
-				<integer>25</integer>
-			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>nemo_daily.sh</key>
 		<dict>
@@ -154,10 +166,10 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>backup.rb</string>
-		<string>Rakefile</string>
-		<string>backup_daemon.rb</string>
 		<string>nemo_daily.sh</string>
+		<string>lib/backup.rb</string>
+		<string>lib/archive.rb</string>
+		<string>backup.rb</string>
 		<string>lib/snapshot.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>

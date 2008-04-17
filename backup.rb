@@ -9,49 +9,27 @@
 #
 # == Summary
 #
-#	Made to be run via Cron or Launchd at specified intervals, this script takes a snapshot of 
-#	the specified folder(s). It stores a specified number of incremental daily snapshots, as well
-#	as an archive of compressed weekly and monthly backups.
+#	This script reads from a YAML file inside the lib directory (settings.yml) that contains
+# profiles for different drives to back up. See settings.yml.example for more info. Specify
+# which drives in the file to back up via command line arguments. Optionally, you can specify
+# a different settings file to read from.
 #
 # == Usage
 
 require 'rdoc/usage'
 require 'optparse'
-require 'ostruct'
 require 'fileutils'
 require 'pathname'
-require 'logger'
-(Pathname.new(__FILE__).dirname + "lib").children.each {|f| require f.to_s}
-
-# TODO: Change the preferences into a YAML file so that multiple backup schemes can be created.
-$prefs = OpenStruct.new
-$prefs.archive = false
-$prefs.ignore = nil
-$prefs.max_snaps = 14
-$prefs.source = "./"
-$prefs.logfile = '/Users/mike/Desktop/backup.log'
-
-$log = Logger.new($prefs.logfile, 10, 1024000)
-$log.level = Logger::INFO
+require 'lib/backup.rb'
 
 opts = OptionParser.new do |opts|
-	opts.banner = "backup.rb [-a|--archive] [-i|--ignore] [-m|--max-snaps snapshots_to_keep] [source] destination"
-	opts.on("-a", "--archive", "Create an archive of the most recent backup in the source directory") do |a|
-		$prefs.archive = a
-	end
-	opts.on("-i", "--ignore IGNORE", "Pattern of files to ignore, or path to file with patterns") do |i|
-		$prefs.ignore = i
-	end
-	opts.on("-m", "--max-snaps MAX_SNAPS", Integer, "Number of snapshots to keep before deleting old ones.") do |m|
-		if m < 2
-			$prefs.max_snaps = 2
-		else
-			$prefs.max_snaps = m
-		end
+	opts.banner = "backup.rb [-uhp] drive_1 [drive_2, drive_3, etc.]"
+	opts.on("-p", "--prefs=FILE", "Use the specified preferences file instead of the default (#{File.expand_path(File.dirname(__FILE__))}/lib/settings.yml)") do |p|
+		Backup::USER_PREFS = p
 	end
 	opts.on("-u", "--usage", "Only print the usage summary") do
 		puts opts
-		exit
+		exit(0)
 	end
 	opts.on_tail("-h", "--help", "Shows credits, summary, and usage information") do
 		RDoc.usage_no_exit()
@@ -59,6 +37,8 @@ opts = OptionParser.new do |opts|
 		exit
 	end
 end
+
+
 
 =begin
 	opts.parse!(ARGV)
