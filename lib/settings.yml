@@ -2,3 +2,18 @@ vault:
     source: /Volumes/Vault
     destination: /Volumes/Mirror/_Vault/Snapshots
     snapshots: 14
+
+dunder:
+    source: /Volumes/Red
+    destination: ~
+    snapshots: 14
+
+mifflin:
+    source: /Volumes/Mifflin
+    destination: ~
+    snapshots: 14
+
+nemo:
+    source: /Volumes/120gb
+    destination: ~
+    snapshots: 14

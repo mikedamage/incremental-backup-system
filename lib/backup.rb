@@ -1,16 +1,17 @@
 require 'ostruct'
 require 'logger'
-require 'snapshot.rb'
-require 'archive.rb'
+require 'yaml'
 
 class Backup
 	
-	@@log 				= Logger.new(@@prefs.logfile, 10, 256000)
-	@@log.level 	= Logger::INFO
+	SETTINGS_FILE = File.join(File.dirname(__FILE__), "settings.yml")
+	SETTINGS			= YAML.load_file(Backup::SETTINGS_FILE)
 	
-	@@prefs 					= OpenStruct.new
-	@@prefs.snapshots = 14
-	@@prefs.logfile		= File.join(File.expand_path(File.dirname(__FILE__)), "../log/backup.log")
+	LOG 					= Logger.new(File.join(File.expand_path(File.dirname(__FILE__)), "../log/backup.log"), 10, 256000)
+	LOG.level 		= Logger::INFO
 	
-	
+end
+
+Dir["#{File.expand_path(File.dirname(__FILE__))}/*"].each do |file|
+  require "#{file}" if file =~ /\.rb$/ && file !~ /backup.rb/ && file !~ /settings.yml/
 end
