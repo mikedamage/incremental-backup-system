@@ -35,33 +35,35 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>backup.rb</key>
+		<key>cmdline.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>41</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>25</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>3</integer>
-		</dict>
-		<key>backup_daemon.rb</key>
-		<dict>
-			<key>caret</key>
+			<integer>8</integer>
+			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>22</integer>
+				<integer>34</integer>
 				<key>line</key>
-				<integer>12</integer>
+				<integer>25</integer>
 			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>41</integer>
+				<key>line</key>
+				<integer>25</integer>
+			</dict>
 		</dict>
 		<key>incremental_backup.sh</key>
 		<dict>
@@ -96,28 +98,58 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>20</integer>
+				<integer>9</integer>
 				<key>line</key>
-				<integer>3</integer>
+				<integer>7</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>lib/settings.yml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>19</integer>
+				<key>line</key>
+				<integer>5</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>19</integer>
+				<key>line</key>
+				<integer>5</integer>
+			</dict>
+		</dict>
 		<key>lib/snapshot.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>4</integer>
 				<key>line</key>
-				<integer>8</integer>
+				<integer>42</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>nemo_daily.sh</key>
 		<dict>
@@ -168,13 +200,14 @@
 	<array>
 		<string>nemo_daily.sh</string>
 		<string>lib/backup.rb</string>
+		<string>lib/settings.yml</string>
 		<string>lib/archive.rb</string>
-		<string>backup.rb</string>
 		<string>lib/snapshot.rb</string>
+		<string>cmdline.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{66, 119}, {1101, 740}}</string>
+	<string>{{73, 127}, {1101, 740}}</string>
 </dict>
 </plist>

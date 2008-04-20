@@ -3,17 +3,20 @@ require 'fileutils'
 require 'pathname'
 
 class Snapshot < Backup
-	attr_accessor :src, :dest, :siblings, :oldest_sib
-
-	def initialize(src, dest)
-		@src = Pathname.new(src)
-		@dest = Pathname.new(dest)
-		@siblings = @dest.children.reverse
+	attr_reader :src, :dest, :schema, :siblings, :oldest_sib, :exclude
+	
+	# Initialize with only one schema, control taking snapshots of *each* schema in the settings file
+	# from the command line script or the superclass.
+	def initialize(schema)
+		@schema 		= Backup::Settings[schema]
+		@src 				= Pathname.new(@schema["source"])
+		@dest 			= Pathname.new(@schema["destination"])
+		@exclude		= @schema["ignore"]
+		@siblings 	= @dest.children.reverse
 		@oldest_sib = @siblings[0].to_s
 	end
 
 	def snap
-		# Creates a new incremental snapshot backup of *source* directory, storing it in a numbered subdirectory of *destination*
 		age_siblings unless @siblings.empty?
 	end
 
@@ -36,4 +39,13 @@ class Snapshot < Backup
 			end
 		end
 	end
+	
+	def synchronize
+		
+	end
+	
+	def synchronize_no_delete
+		
+	end
+	
 end

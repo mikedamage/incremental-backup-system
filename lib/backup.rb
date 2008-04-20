@@ -5,7 +5,10 @@ require 'yaml'
 class Backup
 	
 	SETTINGS_FILE = File.join(File.dirname(__FILE__), "settings.yml")
-	SETTINGS			= YAML.load_file(Backup::SETTINGS_FILE)
+	
+	Settings			= YAML.load_file(Backup::SETTINGS_FILE)
+	Schemas				= []
+	Settings.each_key { |k| Schemas << k }
 	
 	LOG 					= Logger.new(File.join(File.expand_path(File.dirname(__FILE__)), "../log/backup.log"), 10, 256000)
 	LOG.level 		= Logger::INFO

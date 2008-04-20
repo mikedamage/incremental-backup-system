@@ -2,18 +2,27 @@ vault:
     source: /Volumes/Vault
     destination: /Volumes/Mirror/_Vault/Snapshots
     snapshots: 14
+    exclude:
+        - .DS_Store
 
 dunder:
     source: /Volumes/Red
     destination: ~
     snapshots: 14
+    exclude:
+        - .DS_Store
 
 mifflin:
     source: /Volumes/Mifflin
     destination: ~
     snapshots: 14
+    exclude:
+        - .DS_Store
 
 nemo:
     source: /Volumes/120gb
     destination: ~
     snapshots: 14
+    exclude:
+        - *.mp3
+        - .DS_Store
