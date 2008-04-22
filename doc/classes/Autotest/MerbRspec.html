@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Autotest::MerbRspec</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Autotest::MerbRspec</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/web_interface/autotest/merb_rspec_rb.html">
+                web_interface/autotest/merb_rspec.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Autotest.html">
+                Autotest
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000012">add_options_if_present</a>&nbsp;&nbsp;
+      <a href="#M000010">consolidate_failures</a>&nbsp;&nbsp;
+      <a href="#M000011">make_test_cmd</a>&nbsp;&nbsp;
+      <a href="#M000013">spec_command</a>&nbsp;&nbsp;
+      <a href="#M000014">spec_commands</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">controller_tests_dir</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"><table>
+<tr><td valign="top"><tt>model_tests_dir</tt>:</td><td>the directory to find model-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>controller_tests_dir</tt>:</td><td>the directory to find controller-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>view_tests_dir</tt>:</td><td>the directory to find view-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>fixtures_dir</tt>:</td><td>the directory to find fixtures in
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">fixtures_dir</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"><table>
+<tr><td valign="top"><tt>model_tests_dir</tt>:</td><td>the directory to find model-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>controller_tests_dir</tt>:</td><td>the directory to find controller-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>view_tests_dir</tt>:</td><td>the directory to find view-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>fixtures_dir</tt>:</td><td>the directory to find fixtures in
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">model_tests_dir</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"><table>
+<tr><td valign="top"><tt>model_tests_dir</tt>:</td><td>the directory to find model-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>controller_tests_dir</tt>:</td><td>the directory to find controller-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>view_tests_dir</tt>:</td><td>the directory to find view-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>fixtures_dir</tt>:</td><td>the directory to find fixtures in
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">view_tests_dir</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"><table>
+<tr><td valign="top"><tt>model_tests_dir</tt>:</td><td>the directory to find model-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>controller_tests_dir</tt>:</td><td>the directory to find controller-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>view_tests_dir</tt>:</td><td>the directory to find view-centric tests
+
+</td></tr>
+<tr><td valign="top"><tt>fixtures_dir</tt>:</td><td>the directory to find fixtures in
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="MerbRspec.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('MerbRspec.src/M000012.html');return false;">
+          <span class="method-name">add_options_if_present</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="MerbRspec.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('MerbRspec.src/M000010.html');return false;">
+          <span class="method-name">consolidate_failures</span><span class="method-args">(failed)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Methods below this point are adapted from Auotest::Rspec
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="MerbRspec.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('MerbRspec.src/M000011.html');return false;">
+          <span class="method-name">make_test_cmd</span><span class="method-args">(files_to_test)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="MerbRspec.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('MerbRspec.src/M000013.html');return false;">
+          <span class="method-name">spec_command</span><span class="method-args">(separator=File::ALT_SEPARATOR)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Finds the proper spec command to use. Precendence is set in the
+lazily-evaluated method <a href="MerbRspec.html#M000014">spec_commands</a>.
+Alias + Override that in ~/.autotest to provide a different spec command
+then the default paths provided.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="MerbRspec.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('MerbRspec.src/M000014.html');return false;">
+          <span class="method-name">spec_commands</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="../Autotest.html">Autotest</a> will look for spec commands in the
+following locations, in this order:
+</p>
+<pre>
+  * bin/spec
+  * default spec bin/loader installed in Rubygems
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+class Weekly < Backup
+	
+end

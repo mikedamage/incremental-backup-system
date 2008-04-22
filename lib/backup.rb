@@ -4,7 +4,7 @@ require 'yaml'
 
 class Backup
 	
-	SETTINGS_FILE = File.join(File.dirname(__FILE__), "settings.yml")
+	SETTINGS_FILE = File.join(File.dirname(__FILE__), "../config/settings.yml")
 	
 	Settings			= YAML.load_file(Backup::SETTINGS_FILE)
 	Schemas				= []
@@ -16,5 +16,5 @@ class Backup
 end
 
 Dir["#{File.expand_path(File.dirname(__FILE__))}/*"].each do |file|
-  require "#{file}" if file =~ /\.rb$/ && file !~ /backup.rb/ && file !~ /settings.yml/
+  require "#{file}" if file =~ /\.rb$/ && file !~ /backup.rb/
 end
