@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-# = Incremental Backup
+# = Nemo Backup Manager
 #
 # Author::		Mike Green <mike.is.green@gmail.com>
 # Date::			03-11-2008
