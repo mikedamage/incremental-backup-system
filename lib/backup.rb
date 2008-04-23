@@ -6,9 +6,9 @@ class Backup
 	
 	SETTINGS_FILE = File.join(File.dirname(__FILE__), "../config/settings.yml")
 	
-	Settings			= YAML.load_file(Backup::SETTINGS_FILE)
-	Schemas				= []
-	Settings.each_key { |k| Schemas << k }
+	SETTINGS			= YAML.load_file(Backup::SETTINGS_FILE)
+	SCHEMAS				= []
+	SETTINGS.each_key { |k| SCHEMAS << k }
 	
 	LOG 					= Logger.new(File.join(File.expand_path(File.dirname(__FILE__)), "../log/backup.log"), 10, 256000)
 	LOG.level 		= Logger::INFO
