@@ -135,14 +135,28 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>project_manager/config/settings.yml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>78</integer>
+				<key>line</key>
+				<integer>1</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>project_manager/lib/project.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>5</integer>
 				<key>line</key>
-				<integer>9</integer>
+				<integer>17</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -154,23 +168,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>14</integer>
+				<integer>27</integer>
 				<key>line</key>
-				<integer>15</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>project_manager/project.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>13</integer>
-				<key>line</key>
-				<integer>6</integer>
+				<integer>12</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -184,13 +184,13 @@
 		<string>lib/backup.rb</string>
 		<string>lib/snapshot.rb</string>
 		<string>project_manager/lib/project_manager.rb</string>
-		<string>project_manager/project.rb</string>
-		<string>project_manager/lib/project.rb</string>
 		<string>project_manager/config/database.yml</string>
+		<string>project_manager/config/settings.yml</string>
+		<string>project_manager/lib/project.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{73, 127}, {1101, 740}}</string>
+	<string>{{19, 96}, {1101, 740}}</string>
 </dict>
 </plist>
