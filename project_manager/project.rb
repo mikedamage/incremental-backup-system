@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 #
 # = Project Archive Manager
-# Author 		::	Mike Green <mike@fifthroomcreative.com>
-# Date			::	04-22-2008
-# Copyright ::	Copyright 2008, Mike Green
-# License		::	GNU General Public License
+# Author::		Mike Green <mike@fifthroomcreative.com>
+# Date::			04-22-2008
+# Copyright::	Copyright 2008, Mike Green
+# License::		GNU General Public License
 #
 # == Summary
 #

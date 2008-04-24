@@ -1,6 +1,6 @@
 # Project Manager Configuration File
-# Hopefully this is pretty self explanatory...
+# (Don't use quotes or backslashes in paths with spaces - just type them as-is)
 
-Active Projects: "/Volumes/Vault/_Fifth Room Creative/_Current"
-Dormant Projects: "/Volumes/Mirror/_Vault/Projects/Dormant"
-Completed Projects: "/Volumes/Mirror/_Vault/Projects/Completed"
+active: /Volumes/Vault/_Fifth Room Creative/_Current
+dormant: /Volumes/Mirror/_Vault/Projects/Dormant
+completed: /Volumes/Mirror/_Vault/Projects/Completed
