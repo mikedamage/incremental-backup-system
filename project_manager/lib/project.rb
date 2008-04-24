@@ -1,9 +1,10 @@
+require 'rubygems'
+require 'activerecord'
+
 class Project < ActiveRecord::Base
-	include "ProjectManager"
+	include ProjectManager
 	
-	
-	
-	def initialize
+	def find_on_filesystem
 		
 	end
 	

@@ -1,7 +1,7 @@
-require 'yaml'
-require 'find'
 require 'rubygems'
 require 'activerecord'
+require 'yaml'
+require 'find'
 
 module ProjectManager
 	

@@ -24,7 +24,7 @@ end
 # use_orm :datamapper
 
 ### Uncomment for ActiveRecord ORM
-# use_orm :activerecord
+use_orm :activerecord
 
 ### Uncomment for Sequel ORM
 # use_orm :sequel

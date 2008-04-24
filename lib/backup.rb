@@ -3,10 +3,8 @@ require 'logger'
 require 'yaml'
 
 class Backup
-	
-	SETTINGS_FILE = File.join(File.dirname(__FILE__), "../config/settings.yml")
-	
-	SETTINGS			= YAML.load_file(Backup::SETTINGS_FILE)
+
+	SETTINGS			= YAML.load_file(File.join(File.dirname(__FILE__), "../config/settings.yml"))
 	SCHEMAS				= []
 	SETTINGS.each_key { |k| SCHEMAS << k }
 	
