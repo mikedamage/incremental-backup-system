@@ -15,6 +15,7 @@ class Project < ActiveRecord::Base
 			syspath = File.expand_path(project)
 			if File.directory?(syspath)
 				if FileTest.exists?(File.join(syspath, "info.yml"))
+					info = YAML.load_file(File.join(syspath, "info.yml"))
 					
 				else
 					
