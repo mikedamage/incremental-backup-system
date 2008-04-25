@@ -9,7 +9,7 @@ class Snapshot < Backup
 	def initialize(schema)
 		@schema 		= Backup::SETTINGS[schema]
 		@src 				= Pathname.new(@schema['source'])
-		@dest 			= Pathname.new(@schema['destination'])
+		@dest 			= Pathname.new(@schema['snapshot directory'])
 		@max_snaps	= @schema['snapshots']
 		@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} "}
 		@siblings 	= @dest.children.reverse

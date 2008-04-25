@@ -17,9 +17,9 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: rails_interface_development
+  database: project_mgr_dev
   username: root
-  password:
+  password: ~
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as 'test' will be erased and
@@ -28,7 +28,7 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: rails_interface_test
+  database: project_mgr_test
   username: root
   password:
   socket: /tmp/mysql.sock
@@ -36,7 +36,7 @@ test:
 production:
   adapter: mysql
   encoding: utf8
-  database: rails_interface_production
+  database: project_mgr
   username: root
   password: 
   socket: /tmp/mysql.sock
