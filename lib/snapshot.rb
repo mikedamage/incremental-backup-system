@@ -20,9 +20,9 @@ class Snapshot < Backup
 		age_siblings unless @siblings.empty?
 		
 		if delete
-			synchronize_snap_zero
+			self.synchronize_snap_zero
 		else
-			synchronize_snap_zero_no_delete
+			self.synchronize_snap_zero_no_delete
 		end
 	end
 
@@ -33,26 +33,34 @@ class Snapshot < Backup
 
 			if rev >= @max_snaps
 				# Delete snapshots past max number to keep...
+				LOG.info("Deleting old snapshots...")
 				Pathname.rmtree(d)
+				LOG.info("..done")
 			elsif rev > 0
 				# Rename the snapshots from 1 to Max, increasing by 1
 				oldname = d
 				newname = @dest.to_s + "/Snapshot." + (rev + 1).to_s
 				FileUtils.mv(oldname, newname)
+				LOG.info("Aging #{oldname}...")
 			else
 				# Treat Snapshot 0 differently, creating a hardlink-only copy of itself to Snapshot.1		
-				system "cd #{(@dest + "Snapshot.0").to_s} && find . -print | cpio -dplm #{(@dest + "Snapshot.1").to_s} ;"
+				`cd #{(@dest + "Snapshot.0").to_s} && find . -print | cpio -dplm #{(@dest + "Snapshot.1").to_s} ;`
+				LOG.info("Created a hard-link copy of Snapshot.0")
 			end
 		end
 	end
 	
 	# TODO: To make sure it lists all of the patterns to exclude correctly, use Array#map instead of just puts!
 	def synchronize_snap_zero
-		system "rsync -avzr --delete #{@excludes.to_s}#{@src.to_s}/ #{(@dest + "Snapshot.0").to_s}/ "
+		LOG.info("Synchronizing #{@src.to_s} with #{(@dest + "Snapshot.0").to_s}")
+		`rsync -avzrE --delete #{@excludes.to_s}#{@src.to_s}/ #{(@dest + "Snapshot.0").to_s}/`
+		LOG.info("...done")
 	end
 	
 	def synchronize_snap_zero_no_delete
-		system "rsync -avzr #{@excludes.to_s}#{@src.to_s}/ #{(@dest + "Snapshot.0").to_s}/ "
+		LOG.info("Synchronizing #{@src.to_s} with #{(@dest + "Snapshot.0").to_s}")
+		`rsync -avzrE #{@excludes.to_s}#{@src.to_s}/ #{(@dest + "Snapshot.0").to_s}/`
+		LOG.info("...done")
 	end
 	
 end

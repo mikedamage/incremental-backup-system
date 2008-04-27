@@ -1,6 +1,5 @@
 require 'fileutils'
 require 'find'
-require 'pathname'
 require 'yaml'
 require 'rubygems'
 require 'activerecord'
