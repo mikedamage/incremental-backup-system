@@ -11,7 +11,7 @@ class Snapshot < Backup
 		@src 				= Pathname.new(@schema['source'])
 		@dest 			= Pathname.new(@schema['snapshot directory'])
 		@max_snaps	= @schema['snapshots']
-		@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} "}
+		@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} " }
 		@siblings 	= @dest.children.reverse
 		@oldest_sib = @siblings[0].to_s
 	end
