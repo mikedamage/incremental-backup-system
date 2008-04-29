@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>project_manager/lib/project.rb</string>
+	<string>lib/full_backup.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -40,30 +40,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>6</integer>
-				<key>line</key>
 				<integer>0</integer>
+				<key>line</key>
+				<integer>40</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>5</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>6</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
 		</dict>
 		<key>incremental_backup.sh</key>
 		<dict>
@@ -84,9 +68,23 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>74</integer>
 				<key>line</key>
-				<integer>5</integer>
+				<integer>18</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>lib/full_backup.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>16</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -98,44 +96,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>22</integer>
+				<integer>34</integer>
 				<key>line</key>
-				<integer>35</integer>
+				<integer>17</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>10</integer>
+			<integer>5</integer>
 		</dict>
 		<key>nemo_daily.sh</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>60</integer>
+				<integer>16</integer>
 				<key>line</key>
-				<integer>57</integer>
+				<integer>56</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>23</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>1</integer>
-				<key>line</key>
-				<integer>57</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>60</integer>
-				<key>line</key>
-				<integer>57</integer>
-			</dict>
 		</dict>
 		<key>project_manager/config/database.yml</key>
 		<dict>
@@ -172,7 +154,7 @@
 				<key>column</key>
 				<integer>5</integer>
 				<key>line</key>
-				<integer>18</integer>
+				<integer>17</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -184,6 +166,7 @@
 	<array>
 		<string>nemo_daily.sh</string>
 		<string>lib/backup.rb</string>
+		<string>lib/full_backup.rb</string>
 		<string>config/settings.yml</string>
 		<string>lib/snapshot.rb</string>
 		<string>project_manager/config/database.yml</string>
@@ -193,6 +176,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{19, 96}, {1101, 740}}</string>
+	<string>{{54, 117}, {1101, 740}}</string>
 </dict>
 </plist>

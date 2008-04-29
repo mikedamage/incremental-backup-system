@@ -14,16 +14,15 @@ class Snapshot < Backup
 		@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} " }
 		@siblings 	= @dest.children.reverse
 		@oldest_sib = @siblings[0].to_s
+		
+		@dest.mkpath unless @dest.exist?
 	end
 
-	def snap(delete=true)
+	def snap
 		age_siblings unless @siblings.empty?
+		(@dest + "Snapshot.0").mkpath if @siblings.empty?
 		
-		if delete
-			self.synchronize_snap_zero
-		else
-			self.synchronize_snap_zero_no_delete
-		end
+		self.synchronize_snap_zero
 	end
 
 	def age_siblings

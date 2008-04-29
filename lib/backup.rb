@@ -15,6 +15,5 @@ class Backup
 	
 end
 
-Pathname.new(__FILE__).dirname.children.each do |file|
-	require "#{file.to_s}" if file.to_s =~ /\.rb$/ && file.to_s != /backup.rb/
-end
+require File.expand_path(File.join(File.dirname(__FILE__), "full_backup.rb"))
+require File.expand_path(File.join(File.dirname(__FILE__), "snapshot.rb"))

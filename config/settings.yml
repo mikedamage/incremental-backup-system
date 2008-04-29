@@ -30,3 +30,12 @@ nemo:
     exclude:
         - *.mp3
         - .DS_Store
+        
+test:
+    source: /Users/mike/Documents/manpages
+    snapshot directory: /Users/mike/Desktop/manpage_snaps
+    backup directory: /Users/mike/Desktop/manpage_backups
+    snapshots: 4
+    exclude:
+        - .DS_Store
+

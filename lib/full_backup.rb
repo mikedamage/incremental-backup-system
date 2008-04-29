@@ -1,10 +1,12 @@
-require 'rubygems'
+require 'zip/zip'
 require 'zip/zipfilesystem'
 require 'fileutils'
 require 'pathname'
+require 'find'
 
 class FullBackup < Backup
 	# Represents a full backup of one of the schemata in the Settings file.
+	include Zip
 	attr_reader :schema, :src, :dest, :src_size, :dest_free_space
 	
 	def initialize(schema)
@@ -12,6 +14,8 @@ class FullBackup < Backup
 		@schema	= Backup::SETTINGS[schema]
 		@src		= Pathname.new(@schema['source'])
 		@dest		= Pathname.new(@schema['backup directory'])
+		
+		@dest.mkpath unless @dest.exist?
 	end
 	
 	def get_source_size
@@ -35,7 +39,8 @@ class FullBackup < Backup
 	end
 	
 	def compress
-		`zip #{@dest.to_s}/FullBackup_#{@date}.zip #{@dest.to_s}/FullBackup_#{@date}/`
+		# TODO: Rewrite this method using RubyZip to compress files on the fly and eliminate need for temporary files
+		system "zip #{@dest.to_s}/FullBackup_#{@date}.zip #{@dest.to_s}/FullBackup_#{@date}/"
 		LOG.info("Backup successfully compressed! Removing temporary directory...")
 		FileUtils.rm_r "#{@dest.to_s}/FullBackup_#{@date}"
 	end
