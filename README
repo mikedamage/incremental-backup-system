@@ -1,0 +1,31 @@
+= Incremental Backup System (Nemo)
+
+Author::	Mike Green <mike@fifthroomcreative.com>
+Copyright::	Copyright (C) 2008, Fifth Room Creative
+URL::		http://www.fifthroomcreative.com
+License::	GNU General Public License
+
+== About Nemo
+
+Nemo aims to be a complete backup solution for POSIX systems (Mac OS X, Linux, BSD, etc.).
+It is still in the very early stages of development, but it will eventually provide:
+
+* Hourly & daily incremental backups
+* Compressed full backups at user-specified intervals
+* A command line interface
+* A web interface to manage snapshots, restore files, and browse through the compressed full backups.
+
+This is my first attempt at creating an application, and consequently it's pretty messy as I'm still getting a feel for it. 
+It's written in pure Ruby, with YAML for the configuration files.
+
+Nemo rose from the need for a backup solution at my workplace. I began adapting some shell scripts that I found online, but
+I realized that I could save time and keep my code more (human-)readable if I did everything in Ruby instead. One script turned into
+three and soon I realized I needed a superclass or module or configuration file to keep everyone playing nicely with each other.
+Thus Nemo was born... It doesn't get its name not from Jules Verne, the file server in my office just happens to be named Nemo...
+
+== About The Author
+
+I'm a 22 year old college student majoring in scientific programming (which turns out to be lots of Java that has nothing to do with
+science...). Ruby is the first language that really gave me a basic understanding of programming. 
+It was easy enough that I could do useful little things with it very early on, and it's been the language I've kept coming back
+to whenever I need to get something done quickly and with little mess.
