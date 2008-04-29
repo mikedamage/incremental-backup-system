@@ -2,7 +2,8 @@ vault:
     source: /Volumes/Vault
     snapshot directory: /Volumes/Mirror/_Vault/Snapshots
     backup directory: /Volumes/Mirror/_Vault/Weekly
-    snapshots: 14
+    hourly: 12
+    daily: 7
     exclude:
         - .DS_Store
 
@@ -10,7 +11,8 @@ dunder:
     source: /Volumes/Red
     snapshot directory: ~
     backup directory: ~
-    snapshots: 14
+    hourly: ~
+    daily: 7
     exclude:
         - .DS_Store
 
@@ -18,7 +20,8 @@ mifflin:
     source: /Volumes/Mifflin
     snapshot directory: ~
     backup directory: ~
-    snapshots: 14
+    hourly: ~
+    daily: 7
     exclude:
         - .DS_Store
 
@@ -26,7 +29,8 @@ nemo:
     source: /Volumes/120gb
     snapshot directory: ~
     backup directory: ~
-    snapshots: 14
+    hourly: ~
+    daily: 7
     exclude:
         - *.mp3
         - .DS_Store
@@ -39,3 +43,13 @@ test:
     exclude:
         - .DS_Store
 
+folio:
+    source: /Users/mike/Development/folio
+    snapshot directory: ~
+    backup directory: /Users/mike/Desktop/folio
+    snapshots: 7
+    exclude:
+        - .DS_Store
+        - *.log
+
+        

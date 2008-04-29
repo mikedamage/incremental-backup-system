@@ -6,11 +6,11 @@ class Snapshot < Backup
 	
 	# Initialize with only one schema, control taking snapshots of *each* schema in the settings file
 	# from the command line script or the superclass.
-	def initialize(schema)
+	def initialize(schema, interval)
 		@schema 		= Backup::SETTINGS[schema]
 		@src 				= Pathname.new(@schema['source'])
 		@dest 			= Pathname.new(@schema['snapshot directory'])
-		@max_snaps	= @schema['snapshots']
+		@max_snaps	= @schema[interval]
 		@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} " }
 		@siblings 	= @dest.children.reverse
 		@oldest_sib = @siblings[0].to_s

@@ -7,7 +7,7 @@ require 'find'
 class FullBackup < Backup
 	# Represents a full backup of one of the schemata in the Settings file.
 	include Zip
-	attr_reader :schema, :src, :dest, :src_size, :dest_free_space
+	attr_reader :schema, :src, :dest, :date, :src_size, :dest_free_space
 	
 	def initialize(schema)
 		@date		= Time.now.strftime("%m-%d-%Y")
@@ -40,9 +40,21 @@ class FullBackup < Backup
 	
 	def compress
 		# TODO: Rewrite this method using RubyZip to compress files on the fly and eliminate need for temporary files
-		system "zip #{@dest.to_s}/FullBackup_#{@date}.zip #{@dest.to_s}/FullBackup_#{@date}/"
-		LOG.info("Backup successfully compressed! Removing temporary directory...")
-		FileUtils.rm_r "#{@dest.to_s}/FullBackup_#{@date}"
+		# 		system "zip #{@dest.to_s}/FullBackup_#{@date}.zip #{@dest.to_s}/FullBackup_#{@date}/"
+		# 		LOG.info("Backup successfully compressed! Removing temporary directory...")
+		# 		FileUtils.rm_r "#{@dest.to_s}/FullBackup_#{@date}"
+		
+		Dir.chdir(@src.dirname)
+		Zip::ZipFile.open((@dest + "FullBackup_#{@date}.zip").to_s, Zip::ZipFile::CREATE) do |zipfile|
+			Find.find(@src.basename.to_s) do |file|
+				if FileTest.directory?(file)
+					zipfile.dir.mkdir(file)
+				else
+					zipfile.file.open(file, "w") {|f| f.write IO.read(file) }
+				end
+			end
+		end
+		Dir.glob("#{@dest}/*.0").each {|f| File.delete(f) }	
 	end
 	
 end
