@@ -2,12 +2,13 @@ require 'fileutils'
 require 'pathname'
 
 class Snapshot < Backup
-	attr_reader :src, :dest, :schema, :siblings, :oldest_sib, :excludes
+	attr_reader :src, :dest, :schema, :siblings, :oldest_sib, :excludes, :interval
 	
 	# Initialize with only one schema, control taking snapshots of *each* schema in the settings file
 	# from the command line script or the superclass.
 	def initialize(schema, interval)
 		@schema 		= Backup::SETTINGS[schema]
+		@interval		= interval
 		@src 				= Pathname.new(@schema['source'])
 		@dest 			= Pathname.new(@schema['snapshot directory'])
 		@max_snaps	= @schema[interval]

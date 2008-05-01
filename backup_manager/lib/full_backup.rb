@@ -31,19 +31,7 @@ class FullBackup < Backup
 		LOG.info("Destination volume has #{@dest_free_space.to_s} MB of free space")
 	end
 	
-	def copy_files
-		LOG.info("Copying files to temporary directory...")
-		FileUtils.mkdir_p "#{@dest.to_s}/FullBackup_#{@date}"
-		FileUtils.cp_r "#{@src.to_s}/.", @dest.to_s
-		LOG.info("...done")
-	end
-	
 	def compress
-		# TODO: Rewrite this method using RubyZip to compress files on the fly and eliminate need for temporary files
-		# 		system "zip #{@dest.to_s}/FullBackup_#{@date}.zip #{@dest.to_s}/FullBackup_#{@date}/"
-		# 		LOG.info("Backup successfully compressed! Removing temporary directory...")
-		# 		FileUtils.rm_r "#{@dest.to_s}/FullBackup_#{@date}"
-		
 		Dir.chdir(@src.dirname)
 		Zip::ZipFile.open((@dest + "FullBackup_#{@date}.zip").to_s, Zip::ZipFile::CREATE) do |zipfile|
 			Find.find(@src.basename.to_s) do |file|
@@ -54,7 +42,7 @@ class FullBackup < Backup
 				end
 			end
 		end
-		Dir.glob("#{@dest}/*.0").each {|f| File.delete(f) }	
+		Dir.glob("#{@dest}/*.0").each {|f| File.delete(f) }	# Get rid of temporary files created by rubyzip.
 	end
 	
 end
