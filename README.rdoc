@@ -14,8 +14,11 @@ It is still in the very early stages of development, but it will eventually prov
 * Compressed full backups at user-specified intervals
 * A command line interface
 * A web interface to manage snapshots, restore files, and browse through the compressed full backups.
+* Ability to copy backups offsite to Amazon S3 or a remote server via SSH or (S)FTP.
 
-This is my first attempt at creating an application, and consequently it's pretty messy as I'm still getting a feel for it.  It's written in pure Ruby, with YAML for the configuration files.
+I want to try to make Nemo as universally compatible as possible, reducing its dependencies on external gems and command line utilities (you'll notice it uses `df` and `du` a couple times...) as much as possible.
+
+This is my first attempt at creating an full-fledged application, and consequently it's pretty messy as I'm still getting a feel for it.  It's written in pure Ruby, with YAML for the configuration files.
 
 Nemo rose from the need for a backup solution at my workplace. I began adapting some shell scripts that I found online, but I realized that I could save time and keep my code more (human-)readable if I did everything in Ruby instead. One script turned into three and soon I realized I needed a superclass or module or configuration file to keep everyone playing nicely with each other. Thus Nemo was born... It doesn't get its name from Jules Verne, the file server in my office just happens to be named Nemo...
 
