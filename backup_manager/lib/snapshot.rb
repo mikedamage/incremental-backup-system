@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'pathname'
+require 'find'
 
 class Snapshot < Backup
 	attr_reader :src, :dest, :schema, :siblings, :oldest_sib, :excludes, :interval
@@ -9,14 +10,18 @@ class Snapshot < Backup
 	def initialize(schema, interval)
 		@schema 		= Backup::SETTINGS[schema]
 		@interval		= interval
-		@src 				= Pathname.new(@schema['source'])
-		@dest 			= Pathname.new(@schema['snapshot directory'])
-		@max_snaps	= @schema[interval]
-		@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} " }
-		@siblings 	= @dest.children.reverse
-		@oldest_sib = @siblings[0].to_s
-		
-		@dest.mkpath unless @dest.exist?
+		begin
+			FileUtils.mkpath("#{@schema['snapshot directory']}/#{interval}") unless FileTest.exist?("#{@schema['snapshot directory']}/#{interval}")
+			@src 				= Pathname.new(@schema['source'])
+			@dest 			= Pathname.new(@schema['snapshot directory'] + "/#{interval}")
+			@max_snaps	= @schema[interval]
+			@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} " }
+			@siblings 	= @dest.children.reverse
+			@oldest_sib = @siblings[0].to_s
+		rescue Errno::ENOENT => e
+			puts "Couldn't find your source or could not create the destination... Check your settings.yml file.\n" + e
+			exit
+		end
 	end
 
 	def snap
@@ -39,13 +44,27 @@ class Snapshot < Backup
 			elsif rev > 0
 				# Rename the snapshots from 1 to Max, increasing by 1
 				oldname = d
-				newname = @dest.to_s + "/Snapshot." + (rev + 1).to_s
+				newname = (@dest + "Snapshot.#{(rev + 1).to_s}").to_s
 				FileUtils.mv(oldname, newname)
 				LOG.info("Aging #{oldname}...")
 			else
-				# Treat Snapshot 0 differently, creating a hardlink-only copy of itself to Snapshot.1		
-				`cd #{(@dest + "Snapshot.0").to_s} && find . -print | cpio -dplm #{(@dest + "Snapshot.1").to_s} ;`
-				LOG.info("Created a hard-link copy of Snapshot.0")
+				# Treat Snapshot 0 differently, creating a hardlink-only copy of itself to Snapshot.1
+				copy_hardlinks("#{(@dest + "Snapshot.0").to_s}", "#{(@dest + "Snapshot.1").to_s}")
+				
+				# FileUtils.mkdir("#{@dest.to_s}/Snapshot.1") unless FileTest.exist?("#{@dest.to_s}/Snapshot.1")
+				# `cd #{(@dest + "Snapshot.0").to_s} && find . -print | cpio -dplm #{(@dest + "Snapshot.1").to_s} ;`
+				# LOG.info("Created a hard-link copy of Snapshot.0")
+			end
+		end
+	end
+	
+	def copy_hardlinks(source, destination)
+		Dir.chdir(File.dirname(source))
+		Find.find(File.basename(source)) do |file|
+			if FileTest.directory?(file)
+				FileUtils.mkpath(File.join(destination, file))
+			else
+				File.link(file, File.join(destination, file))
 			end
 		end
 	end

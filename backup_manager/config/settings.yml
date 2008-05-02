@@ -39,7 +39,8 @@ test:
     source: /Users/mike/Documents/manpages
     snapshot directory: /Users/mike/Desktop/manpage_snaps
     backup directory: /Users/mike/Desktop/manpage_backups
-    snapshots: 4
+    hourly: 8
+    daily: 4
     exclude:
         - .DS_Store
 
