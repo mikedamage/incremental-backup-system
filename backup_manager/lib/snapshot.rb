@@ -43,9 +43,9 @@ class Snapshot < Backup
 				LOG.info("..done")
 			elsif rev > 0
 				# Rename the snapshots from 1 to Max, increasing by 1
-				oldname = d
-				newname = (@dest + "Snapshot.#{(rev + 1).to_s}").to_s
-				FileUtils.mv(oldname, newname)
+				# oldname = d
+				# newname = d.succ # is much easier than (@dest + "Snapshot.#{(rev + 1).to_s}").to_s
+				FileUtils.mv(d, d.succ)
 				LOG.info("Aging #{oldname}...")
 			else
 				# Treat Snapshot 0 differently, creating a hardlink-only copy of itself to Snapshot.1
@@ -59,7 +59,7 @@ class Snapshot < Backup
 	end
 	
 	def copy_hardlinks(source, destination)
-		Dir.chdir(File.dirname(source))
+		Dir.chdir(source)
 		Find.find(File.basename(source)) do |file|
 			if FileTest.directory?(file)
 				FileUtils.mkpath(File.join(destination, file))
