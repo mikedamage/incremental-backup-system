@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>backup_manager/lib/backup.rb</string>
+	<string>lib/backup.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -49,86 +49,25 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>backup_manager/incremental_backup.sh</key>
+		<key>lib/backup.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>25</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>8</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-		</dict>
-		<key>backup_manager/lib/backup.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>80</integer>
-				<key>line</key>
-				<integer>7</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>72</integer>
-				<key>line</key>
-				<integer>7</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>80</integer>
-				<key>line</key>
-				<integer>7</integer>
-			</dict>
-		</dict>
-		<key>backup_manager/lib/full_backup.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>102</integer>
-				<key>line</key>
-				<integer>44</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>backup_manager/lib/snapshot.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>40</integer>
-				<key>line</key>
-				<integer>60</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>37</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>backup_manager/lib/backup.rb</string>
-		<string>backup_manager/lib/full_backup.rb</string>
-		<string>backup_manager/lib/snapshot.rb</string>
 		<string>TODO.taskpaper</string>
-		<string>backup_manager/incremental_backup.sh</string>
+		<string>lib/backup.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>

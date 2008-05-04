@@ -1,8 +1,8 @@
-require 'fileutils'
-require 'find'
-require 'yaml'
 require 'rubygems'
 require 'activerecord'
+require 'yaml'
+require 'find'
+require 'fileutils'
 
 class Project < ActiveRecord::Base
 	include ProjectManager

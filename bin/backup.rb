@@ -24,7 +24,7 @@ require 'lib/backup.rb'
 
 opts = OptionParser.new do |opts|
 	opts.banner = "backup.rb [options] drive_1 [drive_2, drive_3, etc.]"
-	opts.on("-p", "--prefs=FILE", "Use the specified preferences file instead of the default (#{File.expand_path(File.dirname(__FILE__))}/lib/settings.yml)") do |p|
+	opts.on("-p", "--prefs=FILE", "Use the specified preferences file instead of the default (#{File.expand_path(File.dirname(__FILE__))}/config/backup_manager.yml)") do |p|
 		Backup::USER_PREFS = p
 	end
 	opts.on("-g", "--gcp [PATH]", "Use GNU \"cp -a\" to copy hardlinks in snapshots (uses \"cpio\" by default)") do |gcp|

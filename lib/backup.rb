@@ -5,10 +5,8 @@ require 'pathname'
 
 class Backup
 
-	SETTINGS	= YAML.load_file(File.join(File.dirname(__FILE__), "../config/settings.yml"))
-	SCHEMAS		= []
-	
-	SETTINGS.each_key { |k| SCHEMAS << k }
+	SETTINGS	= YAML.load_file(File.join(File.dirname(__FILE__), "../config/backup_manager.yml"))
+	SCHEMAS		= SETTINGS.keys
 	
 	LOG 					= Logger.new(File.join(File.expand_path(File.dirname(__FILE__)), "../log/backup.log"), 10, 256000)
 	LOG.level 		= Logger::INFO

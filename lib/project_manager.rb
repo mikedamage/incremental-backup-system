@@ -2,10 +2,11 @@ require 'rubygems'
 require 'activerecord'
 require 'yaml'
 require 'find'
+require 'fileutils'
 
 module ProjectManager
 	
-	SETTINGS				= YAML.load_file(File.join(File.dirname(__FILE__), "../config/settings.yml"))
+	SETTINGS				= YAML.load_file(File.join(File.dirname(__FILE__), "../config/project_manager.yml"))
 	DATABASE_CONFIG	= YAML.load_file(File.join(File.dirname(__FILE__), "../config/database.yml"))
 	
 	ACTIVE_PROJECTS_DIR			=	SETTINGS['active']
@@ -22,6 +23,5 @@ module ProjectManager
 	
 end
 
-Dir["#{File.expand_path(File.dirname(__FILE__))}/*"].each do |file|
-  require "#{file}" if file =~ /\.rb$/ && file !~ /project_manager.rb/
-end
+require File.expand_path(File.join(File.dirname(__FILE__), 'project.rb'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'archive.rb'))
