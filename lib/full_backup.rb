@@ -4,8 +4,8 @@ require 'fileutils'
 require 'pathname'
 require 'find'
 
-class FullBackup < Backup
-	# Represents a full backup of one of the schemata in the Settings file.
+class FullBackup
+	include Backup
 	include Zip
 	attr_reader :schema, :src, :dest, :date, :src_size, :dest_free_space
 	
