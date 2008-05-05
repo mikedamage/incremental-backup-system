@@ -28,8 +28,7 @@ class Snapshot
 	def snap
 		age_siblings unless @siblings.empty?
 		(@dest + "Snapshot.0").mkpath if @siblings.empty?
-		
-		self.synchronize_snap_zero
+		synchronize_snap_zero
 	end
 
 	def age_siblings
@@ -66,7 +65,6 @@ class Snapshot
 		end
 	end
 	
-	# TODO: To make sure it lists all of the patterns to exclude correctly, use Array#map instead of just puts!
 	def synchronize_snap_zero
 		LOG.info("Synchronizing #{@src.to_s} with #{(@dest + "Snapshot.0").to_s}")
 		`rsync -avzrE --delete #{@excludes.to_s}#{@src.to_s}/ #{(@dest + "Snapshot.0").to_s}/`
