@@ -1,6 +1,9 @@
 .DS_Store
 *~
 log/*.log
+config/backup_manager.yml
+config/project_manager.yml
+config/database.yml
 rails_interface/config/database.yml
 rails_interface/log/*.log
 rails_interface/tmp/*

@@ -54,6 +54,7 @@ class Snapshot
 		end
 	end
 	
+	# TODO: Test this further - "Find.find(Dir.pwd) {|f| puts File.basename(f) unless File.basename(f) =~ /Snapshot\.*/}"
 	def copy_hardlinks(source, destination)
 		Dir.chdir(source)
 		Find.find(File.basename(source)) do |file|
