@@ -17,7 +17,7 @@ class Snapshot
 			@dest 			= Pathname.new(@schema['snapshot directory'] + "/#{interval}")
 			@max_snaps	= @schema[interval]
 			@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} " }
-			@siblings 	= @dest.children.reverse
+			@siblings 	= @dest.children.reverse.delete_if {|x| x.basename.to_s == ".DS_Store"}
 			@oldest_sib = @siblings[0].to_s
 		rescue Errno::ENOENT => e
 			puts "Couldn't find your source or could not create the destination... Check your settings file.\n" + e
@@ -54,11 +54,12 @@ class Snapshot
 		end
 	end
 	
-	# TODO: Test this further - "Find.find(Dir.pwd) {|f| puts File.basename(f) unless File.basename(f) =~ /Snapshot\.*/}"
 	def copy_hardlinks(source, destination)
 		Dir.chdir(source)
-		Find.find(File.basename(source)) do |file|
-			if FileTest.directory?(file)
+		Find.find(".") do |f|
+			file = f
+			file[0..1] = ""
+			if FileTest.directory?(File.expand_path(file))
 				FileUtils.mkpath(File.join(destination, file))
 			else
 				File.link(file, File.join(destination, file))
