@@ -1,3 +1,20 @@
+require 'yaml'
+require 'fileutils'
+
+namespace :backup do
+	desc "Creates directories for each of the schemata listed in config/backup_manager.yml"
+	task :bootstrap do
+		settings = YAML.load_file(File.join(File.dirname(__FILE__), "config/backup_manager.yml"))
+		
+		settings.keys.each do |key|
+			schema = settings[key]
+			FileUtils.mkpath(schema["backup directory"]) if schema["backup directory"] unless FileTest.exist?(schema["backup directory"])
+			# TODO: Finish the bootstrap rake task
+		end
+	end
+		
+end
+
 namespace :git do
 	desc "Stages new & modified files for commit."
 	task :add do
