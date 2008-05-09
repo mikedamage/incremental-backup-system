@@ -40,14 +40,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>4</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>33</integer>
+				<integer>65</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>21</integer>
 		</dict>
 		<key>config/backup_manager.yml</key>
 		<dict>
@@ -93,6 +93,20 @@
 				<integer>10</integer>
 			</dict>
 		</dict>
+		<key>lib/full_backup.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>27</integer>
+				<key>line</key>
+				<integer>13</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>lib/project_manager.rb</key>
 		<dict>
 			<key>caret</key>
@@ -127,8 +141,9 @@
 		<string>TODO.taskpaper</string>
 		<string>lib/snapshot.rb</string>
 		<string>bin/backup.rb</string>
-		<string>config/backup_manager.yml</string>
 		<string>lib/backup.rb</string>
+		<string>lib/full_backup.rb</string>
+		<string>config/backup_manager.yml</string>
 		<string>lib/project_manager.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>

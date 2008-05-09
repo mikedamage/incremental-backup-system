@@ -11,9 +11,9 @@ class Snapshot
 		@schema 		= settings(schema)
 		@interval		= interval
 		begin
-			FileUtils.mkpath("#{@schema['snapshot directory']}/#{interval}") unless FileTest.exist?("#{@schema['snapshot directory']}/#{interval}")
+			FileUtils.mkpath("#{@schema['snapdir']}/#{interval}") unless FileTest.exist?("#{@schema['snapdir']}/#{interval}")
 			@src 				= Pathname.new(@schema['source'])
-			@dest 			= Pathname.new(@schema['snapshot directory'] + "/#{interval}")
+			@dest 			= Pathname.new(@schema['snapdir'] + "/#{interval}")
 			@max_snaps	= @schema[interval]
 			@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} " }
 			@siblings 	= @dest.children.reverse.delete_if {|x| x.basename.to_s !~ /Snapshot\.\d+/ }
@@ -56,7 +56,7 @@ class Snapshot
 		end
 
 		def refresh
-			@dest 			= Pathname.new(@schema['snapshot directory'] + "/#{interval}")
+			@dest 			= Pathname.new(@schema['snapdir'] + "/#{interval}")
 			@siblings 	= @dest.children.reverse.delete_if {|x| x.basename.to_s !~ /Snapshot\.\d+/ }
 			@oldest_sib = @siblings[0].to_s
 			self

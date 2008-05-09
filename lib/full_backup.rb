@@ -11,24 +11,10 @@ class FullBackup
 	
 	def initialize(schema)
 		@date		= Time.now.strftime("%m-%d-%Y")
-		@schema	= Backup::SETTINGS[schema]
+		@schema	= settings(schema)
 		@src		= Pathname.new(@schema['source'])
-		@dest		= Pathname.new(@schema['backup directory'])
-		
+		@dest		= Pathname.new(@schema['backupdir'])
 		@dest.mkpath unless @dest.exist?
-	end
-	
-	def get_source_size
-		LOG.info("Calculating size of the files to be backed up. This may take a while...")
-		output 		= `du -ckd 0 #{@src.to_s}`
-		@src_size	= output.slice(/^\d+/).to_i
-		LOG.info("Total Size: #{@src_size.to_s} Megabytes")
-	end
-	
-	def get_dest_free_space
-		output = `df -m #{@dest.to_s} | awk '{print $4}'`
-		@dest_free_space	= output.slice(/\d+$/).to_i
-		LOG.info("Destination volume has #{@dest_free_space.to_s} MB of free space")
 	end
 	
 	def compress
@@ -45,4 +31,20 @@ class FullBackup
 		Dir.glob("#{@dest}/*.0").each {|f| File.delete(f) }	# Get rid of temporary files created by rubyzip.
 	end
 	
+	def enough_room?
+		@src_size = get_source_size
+		@dest_free_space = get_dest_free_space
+		@dest_free_space > @src_size
+	end
+	
+	private
+		def get_source_size
+			output 		= `du -md 0 #{@src.to_s}`
+			output.slice(/^\d+/).to_i
+		end
+	
+		def get_dest_free_space
+			output = `df -m #{@dest.to_s} | awk '{print $4}'`
+			output.slice(/\d+$/).to_i
+		end
 end

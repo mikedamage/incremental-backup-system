@@ -3,7 +3,7 @@
 # = Nemo Backup Manager
 #
 # Author::		Mike Green <mike.is.green@gmail.com>
-# Date::			03-11-2008
+# Date::			05-09-2008
 # Copyright::	Copyright (c) 2008 Mike Green
 # License::		GNU General Public License
 #
@@ -24,11 +24,18 @@ require '../lib/backup.rb'
 
 Prefs = OpenStruct.new({
 	"delete" => true,
-	"config" => File.expand_path(File.join(File.dirname(__FILE__), "../config/backup_manager.yml"))}),
+	"config" => File.expand_path(File.join(File.dirname(__FILE__), "../config/backup_manager.yml")),
+	"snapshot" => false,
+	"archive" => false,
+	"interval" => nil
 })
 
 args = OptionParser.new do |opts|
 	opts.banner = "backup.rb [options] drive_1 [drive_2, drive_3, etc.]"
+	opts.on("-s", "--snapshot INTERVAL", [:hourly, :daily], "Take an incremental snapshot for the selected interval (hourly or daily)") do |opt|
+		Prefs.snapshot = true
+		Prefs.interval = opt
+	end
 	opts.on("-n", "--no-delete", "Don't delete files no longer found on source volume") do
 		Prefs.delete = false
 	end
@@ -43,10 +50,23 @@ args = OptionParser.new do |opts|
 	end
 end
 
+
 begin
 	args.parse!
 	
+	ARGV.each do |schema|
+		if Prefs.snapshot
+			sh = Snapshot.new(schema, Prefs.interval)
+			sh.snap
+		elsif Prefs.archive
+			fb = FullBackup.new(schema)
+			fb.compress if fb.enough_room?
+		elsif Prefs.snapshot && Prefs.archive
+			puts "One or the other, bud. You can't take a snapshot and a backup at the same time"
+			exit
+		end
+	end
 rescue OptionParser::ParseError => e
-	LOG.error(e)
+	#LOG.error(e)
 	puts e
 end
