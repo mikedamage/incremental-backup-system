@@ -1,12 +1,4 @@
 Nemo Incremental Backup System (NIBS):
-- Learn RSpec and begin writing specs before continuing with development @Home
-	- Finalize which classes have which behaviors @Home
-	- Integrate the project manager and backup manager directory trees, probably keep the web interface separate @Home
-	- Write specs using RSpec gem for each class @Home
-		- Snapshot @Home
-		- FullBackup @Home
-		- Project @Home
-		- Archive @Home
 - Find a way to pull in backups of user folders to the Mirror during work hours, ignoring computers that aren't currently on the network @Mac
 - Snapshot Class @Home
 	- Look into using a pure-Ruby sync method instead of using a system call to Rsync. @Mac

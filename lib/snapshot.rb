@@ -4,10 +4,9 @@ require 'find'
 
 class Snapshot
 	include Backup
-	attr_reader :src, :dest, :schema, :siblings, :oldest_sib, :excludes, :interval
+	attr_reader :src, :dest, :schema, :siblings, :oldest_sib, :latest, :excludes, :interval
 	
-	# Initialize with only one schema, control taking snapshots of *each* schema in the settings file
-	# from the command line script or the superclass.
+	# Instance Methods
 	def initialize(schema, interval)
 		@schema 		= settings(schema)
 		@interval		= interval
@@ -19,6 +18,7 @@ class Snapshot
 			@excludes		= @schema['exclude'].map {|e| "--exclude=#{e} " }
 			@siblings 	= @dest.children.reverse.delete_if {|x| x.basename.to_s !~ /Snapshot\.\d+/ }
 			@oldest_sib = @siblings[0].to_s
+			@latest			= @dest + "Snapshot.0"
 		rescue Errno::ENOENT => e
 			puts "Couldn't find your source or could not create the destination... Check your settings file.\n" + e
 			LOG.error(e)
@@ -33,28 +33,28 @@ class Snapshot
 		end
 		synchronize_snap_zero
 		refresh
+		return true
 	end
-
-	def age_siblings
-		@siblings.each do |sib|
-			d = sib.to_s
-			rev = d.slice(/\d+$/).to_i
-			if rev >= @max_snaps
-				# Delete snapshots past max number to keep...
-				LOG.info("Deleting old snapshots...")
-				Pathname.new(d).rmtree
-				LOG.info("..done")
-			elsif rev > 0
-				# Rename the snapshots from 1 to Max, increasing by 1
-				oldname = d
-				newname = (@dest + "Snapshot.#{(rev + 1).to_s}").to_s
-				FileUtils.mv(oldname, newname)
-				LOG.info("Aging #{oldname}...")
+	
+	private
+		def age_siblings
+			@siblings.each do |sib|
+				d = sib.to_s
+				rev = d.slice(/\d+$/).to_i
+				if rev >= @max_snaps
+					# Delete snapshots past max number to keep...
+					LOG.info("Deleting #{sib.basename}")
+					Pathname.new(d).rmtree
+				elsif rev > 0
+					# Rename the snapshots from 1 to Max, increasing by 1
+					oldname = d
+					newname = (@dest + "Snapshot.#{(rev + 1).to_s}").to_s
+					FileUtils.mv(oldname, newname)
+					LOG.info("Aging #{sib.basename} => #{File.basename(newname)}")
+				end
 			end
 		end
-	end
 
-	private
 		def refresh
 			@dest 			= Pathname.new(@schema['snapshot directory'] + "/#{interval}")
 			@siblings 	= @dest.children.reverse.delete_if {|x| x.basename.to_s !~ /Snapshot\.\d+/ }

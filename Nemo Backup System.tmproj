@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>lib/snapshot.rb</string>
+	<string>bin/backup.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -26,9 +26,23 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>14</integer>
+				<integer>38</integer>
 				<key>line</key>
-				<integer>2</integer>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>bin/backup.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>33</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -54,28 +68,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>4</integer>
+				<integer>107</integer>
 				<key>line</key>
-				<integer>15</integer>
+				<integer>10</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-		</dict>
-		<key>lib/full_backup.rb</key>
-		<dict>
-			<key>caret</key>
+			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>101</integer>
 				<key>line</key>
-				<integer>19</integer>
+				<integer>10</integer>
 			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>107</integer>
+				<key>line</key>
+				<integer>10</integer>
+			</dict>
 		</dict>
 		<key>lib/project_manager.rb</key>
 		<dict>
@@ -96,21 +112,21 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>5</integer>
+				<integer>64</integer>
 				<key>line</key>
-				<integer>33</integer>
+				<integer>52</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>16</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>TODO.taskpaper</string>
-		<string>lib/full_backup.rb</string>
 		<string>lib/snapshot.rb</string>
+		<string>bin/backup.rb</string>
 		<string>config/backup_manager.yml</string>
 		<string>lib/backup.rb</string>
 		<string>lib/project_manager.rb</string>
