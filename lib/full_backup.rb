@@ -37,6 +37,12 @@ class FullBackup
 		@dest_free_space > @src_size
 	end
 	
+	def list_contents(file)
+		ZipFile.open(file) do |zipfile|
+			
+		end
+	end
+	
 	private
 		def get_source_size
 			output 		= `du -md 0 #{@src.to_s}`

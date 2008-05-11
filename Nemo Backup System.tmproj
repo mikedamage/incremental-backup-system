@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>bin/backup.rb</string>
+	<string>lib/snapshot.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -40,9 +40,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>7</integer>
+				<integer>12</integer>
 				<key>line</key>
-				<integer>65</integer>
+				<integer>57</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -54,44 +54,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>12</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>lib/backup.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>107</integer>
-				<key>line</key>
-				<integer>10</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>101</integer>
-				<key>line</key>
-				<integer>10</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>107</integer>
-				<key>line</key>
-				<integer>10</integer>
-			</dict>
+			<integer>6</integer>
 		</dict>
 		<key>lib/full_backup.rb</key>
 		<dict>
@@ -141,7 +111,6 @@
 		<string>TODO.taskpaper</string>
 		<string>lib/snapshot.rb</string>
 		<string>bin/backup.rb</string>
-		<string>lib/backup.rb</string>
 		<string>lib/full_backup.rb</string>
 		<string>config/backup_manager.yml</string>
 		<string>lib/project_manager.rb</string>

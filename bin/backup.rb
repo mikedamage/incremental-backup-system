@@ -20,7 +20,8 @@ require 'optparse'
 require 'ostruct'
 require 'fileutils'
 require 'pathname'
-require '../lib/backup.rb'
+require File.expand_path(File.join(File.dirname(__FILE__), "../lib/backup.rb"))
+require File.expand_path(File.join(File.dirname(__FILE__), "../lib/project_manager.rb"))
 
 Prefs = OpenStruct.new({
 	"delete" => true,
@@ -31,20 +32,23 @@ Prefs = OpenStruct.new({
 })
 
 args = OptionParser.new do |opts|
-	opts.banner = "backup.rb [options] drive_1 [drive_2, drive_3, etc.]"
+	opts.banner = "backup.rb (--archive|--snapshot=interval) drive_1 [drive_2, drive_3, etc.]"
+	opts.on("-a", "--archive", "Creates a compressed full backup of selected schemata.") do
+		Prefs.archive = true
+	end
 	opts.on("-s", "--snapshot INTERVAL", [:hourly, :daily], "Take an incremental snapshot for the selected interval (hourly or daily)") do |opt|
 		Prefs.snapshot = true
 		Prefs.interval = opt
 	end
-	opts.on("-n", "--no-delete", "Don't delete files no longer found on source volume") do
+	opts.on("-n", "--no-delete", "Don't delete files that were deleted from source volume") do
 		Prefs.delete = false
-	end
-	opts.on("-u", "--usage", "Only print the usage summary") do
-		puts opts
-		exit(0)
 	end
 	opts.on_tail("-h", "--help", "Shows credits, summary, and usage information") do
 		RDoc.usage_no_exit("Summary")
+		puts opts
+		exit
+	end
+	if ARGV.empty?
 		puts opts
 		exit
 	end
@@ -53,7 +57,6 @@ end
 
 begin
 	args.parse!
-	
 	ARGV.each do |schema|
 		if Prefs.snapshot
 			sh = Snapshot.new(schema, Prefs.interval)

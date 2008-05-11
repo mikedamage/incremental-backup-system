@@ -24,4 +24,4 @@ module ProjectManager
 end
 
 require File.expand_path(File.join(File.dirname(__FILE__), 'project.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'archive.rb'))
+# require File.expand_path(File.join(File.dirname(__FILE__), 'archive.rb'))
