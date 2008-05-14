@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>lib/snapshot.rb</string>
+	<string>lib/backup.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -40,14 +40,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>12</integer>
+				<integer>13</integer>
 				<key>line</key>
-				<integer>57</integer>
+				<integer>30</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>21</integer>
+			<integer>24</integer>
 		</dict>
 		<key>config/backup_manager.yml</key>
 		<dict>
@@ -63,14 +63,28 @@
 			<key>firstVisibleLine</key>
 			<integer>6</integer>
 		</dict>
-		<key>lib/full_backup.rb</key>
+		<key>lib/backup.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>27</integer>
+				<integer>4</integer>
 				<key>line</key>
-				<integer>13</integer>
+				<integer>15</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>lib/compressed_backup.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>3</integer>
+				<key>line</key>
+				<integer>15</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -82,9 +96,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>22</integer>
+				<integer>26</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -111,13 +125,14 @@
 		<string>TODO.taskpaper</string>
 		<string>lib/snapshot.rb</string>
 		<string>bin/backup.rb</string>
-		<string>lib/full_backup.rb</string>
+		<string>lib/compressed_backup.rb</string>
 		<string>config/backup_manager.yml</string>
 		<string>lib/project_manager.rb</string>
+		<string>lib/backup.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{41, 126}, {1101, 740}}</string>
+	<string>{{69, 123}, {1101, 740}}</string>
 </dict>
 </plist>

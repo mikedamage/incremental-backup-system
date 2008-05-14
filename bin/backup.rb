@@ -24,11 +24,11 @@ require File.expand_path(File.join(File.dirname(__FILE__), "../lib/backup.rb"))
 require File.expand_path(File.join(File.dirname(__FILE__), "../lib/project_manager.rb"))
 
 Prefs = OpenStruct.new({
-	"delete" => true,
-	"config" => File.expand_path(File.join(File.dirname(__FILE__), "../config/backup_manager.yml")),
-	"snapshot" => false,
-	"archive" => false,
-	"interval" => nil
+	"delete" 		=> true,
+	"config" 		=> File.expand_path(File.join(File.dirname(__FILE__), "../config/backup_manager.yml")),
+	"snapshot"	=> false,
+	"archive" 	=> false,
+	"interval" 	=> nil
 })
 
 args = OptionParser.new do |opts|

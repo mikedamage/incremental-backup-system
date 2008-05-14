@@ -1,18 +1,27 @@
 Nemo Incremental Backup System (NIBS):
-- Find a way to pull in backups of user folders to the Mirror during work hours, ignoring computers that aren't currently on the network @Mac
+- Write specs using RSpec gem for each class @Home
+	- Snapshot @Home
+	- FullBackup @Home
+	- Project @Home
+	- Archive @Home
 - Snapshot Class @Home
 	- Look into using a pure-Ruby sync method instead of using a system call to Rsync. @Mac
-	- Use pure ruby instead of 'cpio' or 'gcp -a' for copying hard links. Need to work out some kinks with File.link() @Mac
 	- Create a method to record the date and time of the snapshot, either just by reading the unix timestamp or with metadata inside a yaml file @Mac
 - Full Backup Class @Mac
 	- Build method to copy all files in a schema to the destination directory @Home
-		- Find a way to compress on-the-fly instead of creating temporary files @Mac @done
-		- look into using hdiutil or some other utility to dump the filesystem @Mac @done
 		- Find a way to figure out the amount of free space remaining and delete old backups when space runs low @Mac
 			- Emulate what 'du -ckd 0' does to find out how much space something takes up. @Mac
 			- Emulate what 'df -m [path]' does to figure out free space on the volume containing specified folder. @Mac
 - Archive Class @Home
 	- Create a way to archive finished projects, move them off the vault to prevent bloated full backups @Mac
+- Nemo Daemon @Home
+	- Create daemon that runs in the background and pulls information from the backup_manager.yml config file. @Home
+	- Find a way to pull in backups of user folders to the Mirror during work hours, ignoring computers that aren't currently on the network @Mac
+	- Trigger backups and snapshots at set intervals based on the number of snapshots/backups indicated @Home
+		- Hourly snapshots are taken by dividing 24 hours by the number of snapshots indicated @Home
+		i.e. 6 daily snapshots means one snapshot every 4 hours.
+		- Daily snapshots taken once every 24 hours @Home
+		- Full backups taken at customizeable intervals @Home
 - Web Interface @Home
 	- AJAX calls back to the controller to preload file metadata, execute filesystem scans in the background to save time @Mac
 	- Publish RSS feed of daily Snapshot results @Home

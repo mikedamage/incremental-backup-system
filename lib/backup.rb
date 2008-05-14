@@ -15,6 +15,13 @@ module Backup
 		SETTINGS[schema]
 	end
 	
+	def hourly_snapshot_interval(schema)
+		# returns how many hours between each 'hourly' backup (needed for daemon)
+		schema = settings(schema)
+		snapshots = schema['hourly'].to_f
+		interval = (24.0 / snapshots).to_i
+	end
+	
 end
 
 require File.expand_path(File.join(File.dirname(__FILE__), "full_backup.rb"))
