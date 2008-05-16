@@ -22,6 +22,12 @@ module Backup
 		interval = (24.0 / snapshots).to_i
 	end
 	
+	def backup_times(schema)
+		start_time = Time.now
+		backup_times = []
+		# This method returns the times at which snapshots will be taken, based on how many snapshots are supposed to be taken per day. They will occur at evenly spaced intervals.
+	end
+	
 end
 
 require File.expand_path(File.join(File.dirname(__FILE__), "full_backup.rb"))
