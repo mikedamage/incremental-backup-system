@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>bin/daemon.rb</string>
+	<string>lib/backup.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -54,9 +54,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>42</integer>
+				<integer>19</integer>
 				<key>line</key>
-				<integer>10</integer>
+				<integer>7</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -82,7 +82,7 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>44</integer>
+				<integer>0</integer>
 				<key>line</key>
 				<integer>27</integer>
 			</dict>
@@ -132,6 +132,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{69, 123}, {1101, 740}}</string>
+	<string>{{19, 147}, {1116, 722}}</string>
 </dict>
 </plist>

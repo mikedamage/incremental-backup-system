@@ -17,15 +17,9 @@ module Backup
 	
 	def hourly_snapshot_interval(schema)
 		# returns how many hours between each 'hourly' backup (needed for daemon)
-		schema = settings(schema)
-		snapshots = schema['hourly'].to_f
-		interval = (24.0 / snapshots).to_i
-	end
-	
-	def backup_times(schema)
-		start_time = Time.now
-		backup_times = []
-		# This method returns the times at which snapshots will be taken, based on how many snapshots are supposed to be taken per day. They will occur at evenly spaced intervals.
+		settings = settings(schema)
+		snapshots = settings['hourly'].to_f
+		(24.0 / snapshots).to_i
 	end
 	
 end
