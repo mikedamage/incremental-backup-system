@@ -1,13 +1,39 @@
-#!/usr/bin/env ruby
-#
-# = Incremental Backup
-#
-# Author::		Mike Green <mike.is.green@gmail.com>
-# Date::			04-07-2008
-# Copyright::	Copyright (c) 2008 Mike Green
-# License::		GNU General Public License
+# Nemo Backup Controller
+# Starts a Scheduler thread that forks into the background and runs Snapshots & Backups at intervals specified in 
 
-require 'rubygems'
-require 'daemons'
+require 'optparse'
+require 'openwfe/util/scheduler'
+require File.expand_path(File.join(File.dirname(__FILE__), "../lib/backup.rb"))
 
-Daemons.run('backup.rb')
+include Backup
+include OpenWFE
+
+
+begin
+	scheduler = Scheduler.new
+	scheduler.start
+
+	SCHEMAS.each do |schema|
+		settings = settings(schema)
+		interval = hourly_snapshot_interval(schema)
+	
+		unless settings['source'].nil?
+		
+			unless settings['hourly'].nil? || settings['snapdir'].nil?
+				scheduler.schedule_every("#{interval}h", :tags => ['snapshot', 'hourly', schema]) do
+					snapshot = Snapshot.new(schema, "hourly")
+					snapshot.snap
+				end
+			end	
+			unless settings['daily'].nil? || settings['snapdir'].nil?
+				scheduler.schedule_every("24h", :tags => ['snapshot', 'daily', schema]) do
+					snapshot = Snapshot.new(schema, "daily")
+					snapshot.snap
+				end
+			end
+		
+		end
+	end
+rescue
+	puts "Error"
+end
