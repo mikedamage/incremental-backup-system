@@ -1,24 +1,24 @@
-# Nemo Backup Controller
-# Starts a Scheduler thread that forks into the background and runs Snapshots & Backups at intervals specified in 
+#!/usr/bin/env ruby
+#
+# = Nemo Backup Controller
+#
+# == Summary
+# Starts a Scheduler thread that forks into the background and runs Snapshots & Backups at intervals specified in config/backup_manager.yml
 
-require 'optparse'
+require 'rubygems'
 require 'openwfe/util/scheduler'
 require File.expand_path(File.join(File.dirname(__FILE__), "../lib/backup.rb"))
 
 include Backup
 include OpenWFE
 
-
-begin
+def start
 	scheduler = Scheduler.new
 	scheduler.start
-
 	SCHEMAS.each do |schema|
 		settings = settings(schema)
 		interval = hourly_snapshot_interval(schema)
-	
 		unless settings['source'].nil?
-		
 			unless settings['hourly'].nil? || settings['snapdir'].nil?
 				scheduler.schedule_every("#{interval}h", :tags => ['snapshot', 'hourly', schema]) do
 					snapshot = Snapshot.new(schema, "hourly")
@@ -31,9 +31,17 @@ begin
 					snapshot.snap
 				end
 			end
-		
 		end
 	end
-rescue
-	puts "Error"
+	scheduler.join # Aligns this script's thread with that of the scheduler (script runs until the scheduler is stopped).
 end
+
+Signal.trap('TERM') do
+	# Make sure we shut down politely:
+	scheduler.stop
+	exit
+end
+
+# at_exit do
+# 	scheduler.stop
+# end
