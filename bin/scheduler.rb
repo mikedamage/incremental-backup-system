@@ -12,36 +12,34 @@ require File.expand_path(File.join(File.dirname(__FILE__), "../lib/backup.rb"))
 include Backup
 include OpenWFE
 
-def start
-	scheduler = Scheduler.new
-	scheduler.start
-	SCHEMAS.each do |schema|
-		settings = settings(schema)
-		interval = hourly_snapshot_interval(schema)
-		unless settings['source'].nil?
-			unless settings['hourly'].nil? || settings['snapdir'].nil?
-				scheduler.schedule_every("#{interval}h", :tags => ['snapshot', 'hourly', schema]) do
-					snapshot = Snapshot.new(schema, "hourly")
-					snapshot.snap
-				end
-			end	
-			unless settings['daily'].nil? || settings['snapdir'].nil?
-				scheduler.schedule_every("24h", :tags => ['snapshot', 'daily', schema]) do
-					snapshot = Snapshot.new(schema, "daily")
-					snapshot.snap
-				end
+
+scheduler = Scheduler.new
+scheduler.start
+SCHEMAS.each do |schema|
+	settings = settings(schema)
+	interval = hourly_snapshot_interval(schema)
+	unless settings['source'].nil?
+		unless settings['hourly'].nil? || settings['snapdir'].nil?
+			scheduler.schedule_every("#{interval}h", :tags => ['snapshot', 'hourly', schema]) do
+				snapshot = Snapshot.new(schema, "hourly")
+				snapshot.snap
+			end
+		end	
+		unless settings['daily'].nil? || settings['backupdir'].nil?
+			scheduler.schedule_every("24h", :tags => ['snapshot', 'daily', schema]) do
+				snapshot = Snapshot.new(schema, "daily")
+				snapshot.snap
 			end
 		end
 	end
-	scheduler.join # Aligns this script's thread with that of the scheduler (script runs until the scheduler is stopped).
 end
+# Aligns this script's thread with that of the scheduler (script runs until the scheduler is stopped).
+scheduler.join 
 
-Signal.trap('TERM') do
-	# Make sure we shut down politely:
+
+# Make sure we shut down politely:
+Signal.trap("TERM") do
 	scheduler.stop
+	File.open("/Users/mike/Desktop/scheduler.txt", w) {|f| f.write "Received TERM Signal"}
 	exit
 end
-
-# at_exit do
-# 	scheduler.stop
-# end

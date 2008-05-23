@@ -1,0 +1,7 @@
+/Users/mike/Development/nibs/bin/scheduler.rb:42: undefined local variable or method `scheduler' for main:Object (NameError)
+	from /Users/mike/Development/nibs/bin/scheduler.rb:41
+/Users/mike/Development/nibs/lib/backup.rb:22:in `to_i': Infinity (FloatDomainError)
+	from /Users/mike/Development/nibs/lib/backup.rb:22:in `hourly_snapshot_interval'
+	from /Users/mike/Development/nibs/bin/scheduler.rb:20
+	from /Users/mike/Development/nibs/bin/scheduler.rb:18:in `each'
+	from /Users/mike/Development/nibs/bin/scheduler.rb:18
