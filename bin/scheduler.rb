@@ -3,15 +3,15 @@
 # = Nemo Backup Controller
 #
 # == Summary
-# Starts a Scheduler thread that forks into the background and runs Snapshots & Backups at intervals specified in config/backup_manager.yml
+# Starts a Scheduler thread that forks into the background and runs Snapshots 
+# & Backups from the profiles in config/backup_manager.yml
 
 require 'rubygems'
 require 'openwfe/util/scheduler'
-require File.expand_path(File.join(File.dirname(__FILE__), "../lib/backup.rb"))
+require '/Users/mike/Development/nibs/lib/backup.rb'
 
 include Backup
 include OpenWFE
-
 
 scheduler = Scheduler.new
 scheduler.start
@@ -39,7 +39,7 @@ scheduler.join
 
 # Make sure we shut down politely:
 Signal.trap("TERM") do
+#at_exit do
 	scheduler.stop
-	File.open("/Users/mike/Desktop/scheduler.txt", w) {|f| f.write "Received TERM Signal"}
 	exit
 end
