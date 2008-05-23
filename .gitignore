@@ -7,3 +7,5 @@ config/database.yml
 rails_interface/config/database.yml
 rails_interface/log/*.log
 rails_interface/tmp/*
+bin/*.output
+bin/*.pid
