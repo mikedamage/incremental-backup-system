@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>bin/nibcontrol.rb</string>
+	<string>bin/scheduler.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,42 +21,42 @@
 	<integer>194</integer>
 	<key>metaData</key>
 	<dict>
-		<key>bin/nibcontrol.rb</key>
+		<key>bin/backup.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>69</integer>
+				<integer>13</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>30</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>27</integer>
 		</dict>
 		<key>bin/scheduler.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>33</integer>
 				<key>line</key>
-				<integer>6</integer>
+				<integer>42</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>6</integer>
 		</dict>
 		<key>config/backup_manager.yml</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>12</integer>
-				<key>line</key>
 				<integer>24</integer>
+				<key>line</key>
+				<integer>38</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -68,9 +68,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>27</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -96,27 +96,27 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>64</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>52</integer>
+				<integer>77</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>43</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>lib/snapshot.rb</string>
 		<string>config/backup_manager.yml</string>
+		<string>bin/backup.rb</string>
 		<string>lib/backup.rb</string>
 		<string>bin/scheduler.rb</string>
-		<string>bin/nibcontrol.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{36, 75}, {1125, 741}}</string>
+	<string>{{30, 113}, {1125, 741}}</string>
 </dict>
 </plist>

@@ -6,40 +6,62 @@
 # Starts a Scheduler thread that forks into the background and runs Snapshots 
 # & Backups from the profiles in config/backup_manager.yml
 
+require 'yaml'
 require 'rubygems'
-require 'openwfe/util/scheduler'
 require '/Users/mike/Development/nibs/lib/backup.rb'
 
 include Backup
-include OpenWFE
 
-scheduler = Scheduler.new
-scheduler.start
-SCHEMAS.each do |schema|
-	settings = settings(schema)
-	interval = hourly_snapshot_interval(schema)
-	unless settings['source'].nil?
-		unless settings['hourly'].nil? || settings['snapdir'].nil?
-			scheduler.schedule_every("#{interval}h", :tags => ['snapshot', 'hourly', schema]) do
-				snapshot = Snapshot.new(schema, "hourly")
-				snapshot.snap
-			end
-		end	
-		unless settings['daily'].nil? || settings['backupdir'].nil?
-			scheduler.schedule_every("24h", :tags => ['snapshot', 'daily', schema]) do
-				snapshot = Snapshot.new(schema, "daily")
-				snapshot.snap
-			end
+PIDFILE = File.expand_path(File.join(File.dirname(__FILE__), "../log/scheduler_pids.yml"))
+
+def run_every(interval_in_seconds)
+	fork do
+		loop do
+			before = Time.now
+			yield
+			interval = interval_in_seconds - (Time.now - before)
+			sleep(interval) if interval > 0
 		end
 	end
 end
-# Aligns this script's thread with that of the scheduler (script runs until the scheduler is stopped).
-scheduler.join 
 
+hourly_pids, daily_pids, backup_pids = Array.new
 
-# Make sure we shut down politely:
-Signal.trap("TERM") do
-#at_exit do
-	scheduler.stop
-	exit
+SCHEMAS.each do |schema|
+	settings = settings(schema)
+	interval = hourly_snapshot_interval(schema) * 3600
+	
+	# Schedule the snapshots...
+	unless settings['source'].empty? || settings['snapdir'].empty?
+		unless settings['hourly'].empty?
+			hourly_pids << run_every(interval) do
+				hourly_snapshot = Snapshot.new(schema, 'hourly')
+				hourly_snapshot.snap
+			end
+		end
+		unless settings['daily'].empty?
+			daily_pids << run_every(86400) do
+				daily_snapshot = Snapshot.new(schema, 'daily')
+				daily_snapshot.snap
+			end
+		end
+	end
+	
+	# Now the backups...
+	unless settings['source'].empty? || settings['backupdir'].empty?
+		backup_pids << run_every(604800) do
+			weekly_backup = FullBackup.new(schema)
+			weekly_backup.compress
+		end
+	end
 end
+
+pids = {
+	:hourly => hourly_pids,
+	:daily	=> daily_pids,
+	:backup	=> backup_pids
+}
+
+# Write each PID to a YAML file for easy killing later.
+File.open(PIDFILE, "w") { |pidfile| pidfile.write(pids.to_yaml) }
+

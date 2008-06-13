@@ -42,7 +42,7 @@ namespace :git do
 	end
 	
 	desc "Commits changes to repository"
-	task :commit do
+	task :commit => [:add] do
 		print "Commit Message: "
 		msg = STDIN.gets
 		system "git commit -m \"#{msg}\""

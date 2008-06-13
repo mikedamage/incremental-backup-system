@@ -75,7 +75,6 @@ class Snapshot
 			end
 		end
 		
-		# TODO: Figure out how to interact with rsync's C library
 		# TODO: Consider using a pure Ruby sync method, just comparing the modification times and changes in file size?
 		def synchronize_snap_zero
 			LOG.info("Synchronizing #{@src.to_s} with #{(@dest + "Snapshot.0").to_s}")
