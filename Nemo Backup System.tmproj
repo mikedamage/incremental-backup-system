@@ -21,70 +21,128 @@
 	<integer>194</integer>
 	<key>metaData</key>
 	<dict>
-		<key>bin/backup.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>13</integer>
-				<key>line</key>
-				<integer>30</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>27</integer>
-		</dict>
 		<key>bin/scheduler.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>33</integer>
+				<integer>50</integer>
 				<key>line</key>
-				<integer>42</integer>
+				<integer>65</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>6</integer>
+			<integer>20</integer>
 		</dict>
 		<key>config/backup_manager.yml</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>24</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>38</integer>
+				<integer>8</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>8</integer>
+			</dict>
+		</dict>
+		<key>config/database.yml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>29</integer>
+				<key>line</key>
+				<integer>13</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>10</integer>
+			<integer>0</integer>
 		</dict>
 		<key>lib/backup.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>4</integer>
 				<key>line</key>
-				<integer>27</integer>
+				<integer>16</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>lib/project_manager.rb</key>
+		<key>lib/compressed_backup.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>3</integer>
 				<key>line</key>
-				<integer>26</integer>
+				<integer>15</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>lib/full_backup.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>17</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>lib/offsite_backup.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>7</integer>
+				<key>line</key>
+				<integer>15</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>lib/project.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>33</integer>
+				<key>line</key>
+				<integer>10</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -103,15 +161,18 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>43</integer>
+			<integer>14</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>lib/snapshot.rb</string>
 		<string>config/backup_manager.yml</string>
-		<string>bin/backup.rb</string>
+		<string>config/database.yml</string>
+		<string>lib/full_backup.rb</string>
+		<string>lib/compressed_backup.rb</string>
 		<string>lib/backup.rb</string>
+		<string>lib/offsite_backup.rb</string>
 		<string>bin/scheduler.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
