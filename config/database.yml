@@ -1,8 +1,0 @@
-# Project Manager Application
-# Database Config File
-
-adapter: mysql
-host: localhost
-username: root
-password: ~
-database: project_mgr
