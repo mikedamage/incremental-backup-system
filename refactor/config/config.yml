@@ -1,0 +1,21 @@
+ProjectManager:
+    ActiveDirectory: ~
+    DormantDirectory: ~
+    ArchiveDirectory: ~
+
+BackupProfiles:
+    test:   
+        Source: /Users/mike/Desktop
+        Snapshots:
+            Storage: ~
+            # How many hours between snapshots?
+            Interval: 24
+            Exclude:
+                - .DS_Store
+                - .svn
+        Backups:
+            Storage: ~
+            MaxBackups: 20
+            Exclude:
+                - .DS_Store
+            
