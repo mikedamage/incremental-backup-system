@@ -1,21 +1,34 @@
-ProjectManager:
-    ActiveDirectory: ~
-    DormantDirectory: ~
-    ArchiveDirectory: ~
+project_manager:
+    active_directory: ~
+    dormant_directory: ~
+    archive_directory: ~
 
-BackupProfiles:
+backup_profiles:
     test:   
-        Source: /Users/mike/Desktop
-        Snapshots:
-            Storage: ~
+        source: /Users/mike/Desktop
+        snapshots:
+            storage: /Users/mike/Development/nibs/refactor/testdir
             # How many hours between snapshots?
-            Interval: 24
-            Exclude:
+            interval: 1
+            exclude:
                 - .DS_Store
                 - .svn
-        Backups:
-            Storage: ~
-            MaxBackups: 20
-            Exclude:
+        backups:
+            storage: ~
+            max_backups: 20
+            exclude:
+                - .DS_Store
+                
+    vault:
+        source: /Volumes/Vault
+        snapshots:
+            storage: ~
+            interval: 2
+            exclude:
+                - .DS_Store
+        backups:
+            storage: ~
+            max_backups: 30
+            exclude:
                 - .DS_Store
             
